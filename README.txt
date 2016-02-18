@@ -56,17 +56,10 @@ TODO
 1) Move js from the html to the appropriate file
   a) the AJAX stuff seems identical
 2) Move css from the html to the appropriate file
-3) rename report.html to something appropriate
-4) report.html is hardcoded.  Fix that.
-5) change buttons for 2016 game
-6) should have match report that shows teams side by side
-    this report might suggest weak defenses.
-7) re-write loadMatches.php to use the API not scrape the screen.
 8) decide file naming convention: camel case or underscore separated
 9) upgrade bootstrap, jquery, html_dom.php
 10) should have build commands (ant, whatever) to stage the programs
   (fill in the real password), and sync with the website
-11) change database for 2016
 
 101) Low priority: use Angular.js
 
