@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <title>Scout 15: Report</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="lib/css/main.css" />
+ 
+    <style>
+#side {
+  float:left;
+  width: 33%;
+}
+#center {
+  float:left;
+  width: 34%;
+}
+button {
+  float:left;
+  width: 95%;
+  height: 65px;
+}
+    </style>
+  </head>
+
+  <body>
+    <input id="match_nr" type="number" class="form-control" placeholder="Match #">
+    <button type="button" id="get_rpt_btn" class="btn btn-success btn-lg btn-block" onclick="runReport()">
+      Get Report
+    </button>
+
+    <div id="container">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" id="adminTab">
+        <li class="active">
+          <a href="#red1" data-toggle="tab" id="red1_tab">red1</a>
+        </li>
+        <li>
+          <a href="#red2" data-toggle="tab" id="red2_tab">red2</a>
+        </li>
+        <li>
+          <a href="#red3" data-toggle="tab" id="red3_tab">red3</a>
+        </li>
+        <li>
+          <a href="#blue1" data-toggle="tab" id=blue1_tab">blue1</a>
+        </li>
+        <li>
+          <a href="#blue2" data-toggle="tab" id="blue2_tab">blue2</a>
+        </li>
+        <li>
+          <a href="#blue3" data-toggle="tab" id="blue3_tab">blue3</a>
+        </li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="red1">
+           <div id="red1_team" class="panel panel-default">test</div>
+        </div> 
+        <div class="tab-pane" id="red2">
+        </div> 
+        <div class="tab-pane" id="red3">
+        </div> 
+        <div class="tab-pane" id="blue1">
+        </div> 
+        <div class="tab-pane" id="blue2">
+        </div> 
+        <div class="tab-pane" id="blue3">
+        </div> 
+      </div> <!--tab-content--> 
+      <div>
+        <div id="info" class="panel panel-default"></div>
+      </div> <!--info panel at bottom-->
+    </div> <!--container-->
+
+    <script src="lib/js/jquery-1.10.1.js"></script>
+    <script src="lib/js/bootstrap.min.js"></script>
+    <script src="lib/js/report/report.js"></script>
+  </body>
+</html>

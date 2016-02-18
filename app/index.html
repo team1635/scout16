@@ -1,0 +1,444 @@
+<html>
+  <head>
+    <title>Scout 15: Enter match statistics</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="lib/css/main.css" />
+ 
+    <style>
+#side {
+  float:left;
+  width: 33%;
+}
+#center {
+  float:left;
+  width: 34%;
+}
+button {
+  float:left;
+  width: 95%;
+  height: 65px;
+}
+    </style>
+    <script>
+var xmlHttpObj;
+
+function catchEvent(eventObj, event, eventHandler) {
+  if (eventObj.addEventListener) {
+    eventObj.addEventListener(event, eventHandler,false);
+  } else if (eventObj.attachEvent) {
+    event = "on" + event;
+    eventObj.attachEvent(event, eventHandler);
+  }
+}
+
+catchEvent(window,"load", function() {
+  getCurrentGame();
+});
+
+function getXmlHttp() {
+  var xmlhttp = null;
+  if (window.XMLHttpRequest) {
+     xmlhttp = new XMLHttpRequest();
+  } else {
+    try {
+      xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+    } catch (e) {
+      try {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      } catch (e) {
+        return null;
+      }
+    }
+  }
+  return xmlhttp;
+}
+
+function getCurrentGame() {
+   // if xmlHttpObj not set
+   if (!xmlHttpObj)
+      xmlHttpObj = getXmlHttp();
+   if (!xmlHttpObj) return;
+
+   xmlHttpObj.open('GET', "getMatch.php", true);
+   xmlHttpObj.onreadystatechange = processCurrentMatch;
+   xmlHttpObj.send(null);
+}
+
+function processCurrentMatch() {
+
+  if(xmlHttpObj.readyState == 4 && xmlHttpObj.status == 200) {
+    try {
+
+      // evaluate JSON
+      eval("var match = ("+ xmlHttpObj.responseText+")");
+      //document.getElementById('match__id').value = match.id;
+      match__id = match.id;
+      document.getElementById('number_').value = match.number_;
+      document.getElementById('event_name').innerHTML = match.event_name;
+      document.getElementById('match_type').innerHTML = match.match_type 
+        + ' match';
+      document.getElementById('red1_btn').innerHTML = match.red_team1_id;
+      document.getElementById('red2_btn').innerHTML = match.red_team2_id;
+      document.getElementById('red3_btn').innerHTML = match.red_team3_id;
+      document.getElementById('blue1_btn').innerHTML = match.blue_team1_id;
+      document.getElementById('blue2_btn').innerHTML = match.blue_team2_id;
+      document.getElementById('blue3_btn').innerHTML = match.blue_team3_id;
+    } catch (e) {
+      alert(e.message);
+    }
+  } else if (xmlHttpObj.readyState == 4 && xmlHttpObj.status != 200) {
+    document.getElementById('info').innerHTML = 'Error: No current match!';
+  }
+}
+
+function buildParams() {
+  var params = "team_id=" + team_id + '&';
+  params += "match__id=" + match__id + '&';
+
+  for (var statName in stats) {
+    params = params + statName + "=" + stats[statName] + '&';
+  }
+
+  params = params.substring(0, params.length);
+
+  return params;
+}
+
+function blue1_btn() {
+  //TODO: Clean spaces from the button string
+  document.getElementById('team_id').value = 
+    document.getElementById('blue1_btn').innerHTML;
+}
+
+function blue2_btn() {
+  document.getElementById('team_id').value = 
+    document.getElementById('blue2_btn').innerHTML;
+}
+
+function blue3_btn() {
+  document.getElementById('team_id').value = 
+    document.getElementById('blue3_btn').innerHTML;
+}
+
+function red1_btn() {
+  //TODO: Clean spaces from the button string
+  document.getElementById('team_id').value = 
+    document.getElementById('red1_btn').innerHTML;
+}
+
+function red2_btn() {
+  document.getElementById('team_id').value = 
+    document.getElementById('red2_btn').innerHTML;
+}
+
+function red3_btn() {
+  document.getElementById('team_id').value = 
+    document.getElementById('red3_btn').innerHTML;
+}
+
+function saveStat() {
+  params = buildParams()
+  request = new ajaxRequest()
+  request.open("POST", "saveStat.php", true)
+  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+
+  request.onreadystatechange = function() {
+    if (this.readyState == 4) {
+      if (this.status == 200) {
+        if (this.responseText != null) {
+          document.getElementById('info').innerHTML = this.responseText
+        } else
+          alert("Ajax error: No data received")
+      } else
+        alert("Ajax error: " + this.statusText)
+    }
+  }
+
+  request.send(params)
+}
+
+function ajaxRequest() {
+  try {
+    var request = new XMLHttpRequest()
+  } catch (e1) {
+    try {
+      request = new ActiveXObject("Msxml2.XMLHTTP")
+    } catch (e2) {
+      try {
+        request = new ActiveXObject("Microsoft.XMLHTTP")
+      } catch (e3) {
+        request = false
+      }
+    }
+  }
+  return request
+}
+
+  </script>
+  </head>
+
+  <body>
+    <div id="container">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" id="matchTab">
+        <li class="active">
+          <a href="#match" data-toggle="tab">Match</a>
+        </li>
+        <li>
+          <a href="#auto" data-toggle="tab">Auto</a>
+        </li>
+        <li>
+          <a href="#tele" data-toggle="tab">Tele Op</a>
+        </li>
+        <li>
+          <a href="#save" data-toggle="tab">Save</a>
+        </li>
+        <li>
+          <a href="#help" data-toggle="tab">Help</a>
+        </li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="match">
+
+          <div id="side">
+            <button type="button" id="red1_btn" class="btn btn-danger btn-lg btn-block" onclick=red1_btn()>
+              Red Team 1 
+            </button>
+            <button type="button" id="red2_btn" class="btn btn-danger btn-lg btn-block" onclick=red2_btn()>
+              Red Team 2 
+            </button>
+            <button type="button" id="red3_btn" class="btn btn-danger btn-lg btn-block" onclick=red3_btn()>
+              Red Team 3 
+            </button>
+          </div> <!--left column match tab-pane -->
+
+          <div id="center">
+            <div id="event_name"></div>
+            <div id="match_type"></div>
+            <input id="number_" type="text" class="form-control" placeholder="Match #">
+            <input id="team_id" type="text" class="form-control" placeholder="Team #">
+          </div> <!--center column match tab-pane -->
+
+          <div id="side">
+            <button type="button" id="blue1_btn" class="btn btn-primary btn-lg btn-block" onclick=blue1_btn()>
+              Blue Team 1 
+            </button>
+            <button type="button" id="blue2_btn" class="btn btn-primary btn-lg btn-block" onclick=blue2_btn()>
+              Blue Team 2 
+            </button>
+            <button type="button" id="blue3_btn" class="btn btn-primary btn-lg btn-block" onclick=blue3_btn()>
+              Blue Team 3 
+            </button>
+          </div> <!--right column match tab-pane -->
+
+        </div> <!--match tab-pane -->
+
+        <div class="tab-pane" id="auto">
+          <div id="side">
+            <button type="button" id="auto_position_btn" class="btn btn-default btn-lg btn-block" onclick="increase('auto_position')">
+               Position 
+               <span id="auto_position_badge" class="badge">1</span>
+            </button>
+            <button type="button" id="auto_robot_btn" class="btn btn-default btn-lg btn-block" onclick="increase('auto_robot')">
+               Robot 
+            </button>
+          </div> <!--left column auto tab-pane -->
+          <div id="center">
+            <button type="button" id="auto_can_btn" class="btn btn-default btn-lg btn-block" onclick="increase('auto_can')">
+               Can 
+            </button>
+          </div> <!--center column auto tab-pane -->
+          <div id="side">
+            <button type="button" id="auto_tote_btn" class="btn btn-default btn-lg btn-block" onclick="increase('auto_tote')">
+               Tote 
+            </button>
+            <button type="button" id="auto_stack_btn" class="btn btn-default btn-lg btn-block" onclick="increase('auto_stack')">
+               Stack 
+               <span id="auto_stack_badge" class="badge">0</span>
+            </button>
+             <button type="button" id="undo_auto" class="btn btn-danger btn-lg btn-block" onclick="undo()">
+               Undo
+             </button>
+          </div> <!--right column auto tab-pane -->
+        </div> <!--auto tab-pane -->
+
+        <div class="tab-pane" id="tele">
+          <div id="side">
+            <button type="button" id="scored_gray_btn" class="btn btn-default btn-lg btn-block" onclick="increase('scored_gray')">
+               Scored<br>Gray
+               <span id="scored_gray_badge" class="badge">0</span>
+             </button> 
+            <button type="button" id="score_stack_btn" class="btn btn-default btn-lg btn-block" onclick="increase('score_stack')">
+               Score<br>Stack
+               <span id="score_stack_badge" class="badge">0</span>
+             </button> 
+            <button type="button" id="coop_btn" class="btn btn-default btn-lg btn-block" onclick="increase('coop')">
+               Coop
+               <span id="coop_badge" class="badge">0</span>
+             </button> 
+            <button type="button" id="coop_stack_btn" class="btn btn-default btn-lg btn-block" onclick="increase('coop_stack')">
+               Coop<br>Stack
+               <span id="coop_stack_badge" class="badge">0</span>
+             </button> 
+          </div> <!--left column tele tab-pane -->
+          <div id="center">
+            <button type="button" id="handle_litter_btn" class="btn btn-default btn-lg btn-block" onclick="increase('handle_litter')">
+               Handle<br>Litter
+               <span id="handle_litter_badge" class="badge">0</span>
+             </button> 
+            <button type="button" id="fallen_can_btn" class="btn btn-default btn-lg btn-block" onclick="increase('fallen_can')">
+               Fallen<br>Can
+               <span id="fallen_can_badge" class="badge">0</span>
+             </button> 
+            <button type="button" id="noodle_in_can_btn" class="btn btn-default btn-lg btn-block" onclick="increase('noodle_in_can')">
+               Noodle<br>in Can
+               <span id="noodle_in_can_badge" class="badge">0</span>
+             </button> 
+            <button type="button" id="clr_rec_area_btn" class="btn btn-default btn-lg btn-block" onclick="increase('clr_rec_area')">
+               Clear<br>Recycle
+               <span id="clr_rec_area_badge" class="badge">0</span>
+             </button> 
+          </div> <!--center column tele tab-pane -->
+          <div id="side">
+            <button type="button" id="scored_can_level_btn" class="btn btn-default btn-lg btn-block" onclick="increase('scored_can_level')">
+               Can<br>Level
+               <span id="scored_can_level_badge" class="badge">0</span>
+             </button> 
+            <button type="button" id="carry_stack_btn" class="btn btn-default btn-lg btn-block" onclick="increase('carry_stack')">
+               Carry<br>Stack
+               <span id="carry_stack_badge" class="badge">0</span>
+             </button> 
+            <button type="button" id="grab_step_can_btn" class="btn btn-default btn-lg btn-block" onclick="increase('grab_step_can')">
+               Grab<br>Step Can
+               <span id="grab_step_can_badge" class="badge">0</span>
+             </button> 
+            <button type="button" id="fouls_btn" class="btn btn-default btn-lg btn-block" onclick="increase('fouls')">
+               Fouls
+               <span id="fouls_badge" class="badge">0</span>
+             </button> 
+             <button type="button" id="undo_tele" class="btn btn-danger btn-lg btn-block" onclick="undo()">
+               Undo
+             </button>
+          </div> <!--right column tele tab-pane -->
+        </div> <!--tele tab-pane -->
+
+        <div class="tab-pane" id="save">
+          <div id="side">
+            &nbsp;
+          </div>
+          <div id="center">
+            &nbsp;
+          </div>
+          <div id="side">
+            <button type="button" id="save_btn" class="btn btn-success btn-lg btn-block" onclick="saveAndReset()">
+              Save
+            </button>
+          </div>
+        </div> <!--save tab-pane -->
+
+        <div class="tab-pane" id="help">
+          <p> 
+Seven persons are needed for scouting every match (six scouts and one admin). There is a separate page for <a href="report.html">scouting reports</a>.
+          </p>
+          <p> 
+The admin loads the match schedule when they are announced, sets the current
+ type of match (i.e. practice or qualifications) and advances the current 
+match when all scouts have entered their score for the previous match. 
+          </p>
+          <p> 
+The scouts must pick a team out the six playing the current match, score
+the auto by pressing the right button, score the teleop period and then 
+press the save button to save the stats to the database. <br>
+There is an undo button on the auto and teleop tabs.  It will undo your
+last click and then the click before that if pressed again.  If you refresh
+the page, you will loose all your stats and there's a chance you might
+get the next match if the admin advanced the current match. 
+          </p>
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <td>
+                  Tab
+                </td>
+                <td>
+                  Button
+                </td>
+                <td>
+                  Description
+                </td>
+              </tr>
+            </thead>
+<tr>
+  <td>Auto</td><td>Position</td><td>What position is robot starting auto? 1 for left, 2 for middle and 3 for right from the perspective of the driver</td>
+</tr>
+<tr>
+  <td>Auto</td><td>Can</td><td>How many cans can the robot move to the auto zone in auto?</td>
+</tr>
+<tr>
+  <td>Auto</td><td>Tote</td><td>How many yellow totes can the robot move to the auto zone in auto?</td>
+</tr>
+<tr>
+  <td>Auto</td><td>Robot</td><td>Can the robot move to the auto zone in auto?</td>
+</tr>
+<tr>
+  <td>Auto</td><td>Stack</td><td>Can the robot stack yellow totes in auto zone in auto?</td>
+</tr>
+<tr>
+  <td>Tele Op</td><td>Scored Gray</td><td>How many gray totes can robot put on the scoring platform in teleop?<td>
+</tr>
+<tr>
+  <td>Tele Op</td><td>Handle Litter</td><td>How many pieces of litter can robot carry to the Recycle zone?<td>
+</tr>
+<tr>
+  <td>Tele Op</td><td>Can Level</td><td>How many can levels can robot score in teleop?<td>
+</tr>
+<tr>
+  <td>Tele Op</td><td>Score Stack</td><td>Highest tote stack robot can build on the scoring platform.<td>
+</tr>
+<tr>
+  <td>Tele Op</td><td>Fallen Can</td><td>How many fallen cans did robot pick up?<td>
+</tr>
+<tr>
+  <td>Tele Op</td><td>Carry Stack</td><td>Highest tote stack robot can carry.<td>
+</tr>
+<tr>
+  <td>Tele Op</td><td>Coop</td><td>How many totes can robot put on coop step? <td>
+</tr>
+<tr>
+  <td>Tele Op</td><td>Noodle In Can</td><td>How many noodles did robot put in cans?<td>
+</tr>
+<tr>
+  <td>Tele Op</td><td>Grab Step Can</td><td>How many cans can robot grab from step?<td>
+</tr>
+<tr>
+  <td>Tele Op</td><td>Coop Stack</td><td>How high can robot stack totes on coop step?<td>
+</tr>
+<tr>
+  <td>Tele Op</td><td>Clear Recycle</td><td>How many totes can robot clear from recycle zone?<td> 
+</tr>
+<tr>
+  <td>Tele Op</td><td>Fouls</td><td>How many fouls did robot get?<td>
+</tr>
+            <tbody>
+            </tbody>
+          </table>
+        </div> <!--help tab-pane -->
+
+        <div>
+          <div id="info" class="panel panel-default"></div>
+        </div>
+      </div> <!--tab content-->
+    </div> <!--container-->
+
+    <script src="lib/js/jquery-1.10.1.js"></script>
+    <script src="lib/js/bootstrap.min.js"></script>
+    <script src="lib/js/index/stat.js"></script>
+  </body>
+</html>
