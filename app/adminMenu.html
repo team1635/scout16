@@ -6,148 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link rel="stylesheet" href="lib/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="lib/css/main.css" />
- 
-    <!--TODO: Investigate how this works.  Shouldn't these be classes
-      instead of ids-->
-    <!--TODO: These belong in a file, not here -->
-    <!--TODO: On the iPhone 6 these scroll laterally -->
-    <style>
-#side {
-  float:left;
-  width: 33%;
-}
-#center {
-  float:left;
-  width: 34%;
-}
-button {
-  float:left;
-  width: 95%;
-  height: 65px;
-}
-    </style>
-    <script>
-var xmlHttpObj;
-
-function catchEvent(eventObj, event, eventHandler) {
-  if (eventObj.addEventListener) {
-    eventObj.addEventListener(event, eventHandler,false);
-  } else if (eventObj.attachEvent) {
-    event = "on" + event;
-    eventObj.attachEvent(event, eventHandler);
-  }
-}
-
-catchEvent(window,"load", function() {
-  getCurrentGame();
-});
-
-function getXmlHttp() {
-  var xmlhttp = null;
-  if (window.XMLHttpRequest) {
-     xmlhttp = new XMLHttpRequest();
-  } else {
-    try {
-      xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-
-    } catch (e) {
-      try {
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-      } catch (e) {
-        return null;
-      }
-    }
-  }
-  return xmlhttp;
-}
-
-function getCurrentGame() {
-   // if xmlHttpObj not set
-   if (!xmlHttpObj)
-      xmlHttpObj = getXmlHttp();
-   if (!xmlHttpObj) return;
-
-   xmlHttpObj.open('GET', "getMatch.php", true);
-   xmlHttpObj.onreadystatechange = processCurrentMatch;
-   xmlHttpObj.send(null);
-}
-function processCurrentMatch() {
-
-  if(xmlHttpObj.readyState == 4 && xmlHttpObj.status == 200) {
-    try {
-
-      // evaluate JSON
-      eval("var match = ("+ xmlHttpObj.responseText+")");
-      document.getElementById('cur_match_nr').value = match.number_;
-      document.getElementById('cur_event_cd').value = match.event_code;
-      document.getElementById('cur_match_type').value = match.match_type;
-    } catch (e) {
-      alert(e.message);
-    }
-  } else if (xmlHttpObj.readyState == 4 && xmlHttpObj.status != 200) {
-    document.getElementById('info').innerHTML = 'Error: No current match!';
-  }
-}
-
-function cur_next() {
-  var current_match = Number(document.getElementById("cur_match_nr").value);
-  current_match += 1;
-  document.getElementById("cur_match_nr").value = current_match;
-}
-
-function cur_prev() {
-  var current_match = Number(document.getElementById("cur_match_nr").value);
-  current_match -= 1;
-  document.getElementById("cur_match_nr").value = current_match;
-}
-
-function buildParams() {
-  var params = "event_code=" + document.getElementById("event_code").value;
-  params += "&match_type=" + document.getElementById("match_type").value;
-  return params;
-}
-
-function loadMatches() {
-  params = buildParams()
-  request = new ajaxRequest()
-  request.open("POST", "loadMatches.php", true)
-  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-//  request.setRequestHeader("Content-length", params.length)
-//  request.setRequestHeader("Connection", "close")
-
-  request.onreadystatechange = function() {
-    if (this.readyState == 4) {
-      if (this.status == 200) {
-        if (this.responseText != null) {
-          document.getElementById('info').innerHTML = this.responseText
-        } else
-          alert("Ajax error: No data received")
-      } else
-        alert("Ajax error: " + this.statusText)
-    }
-  }
-
-  request.send(params)
-}
-
-function ajaxRequest() {
-  try {
-    var request = new XMLHttpRequest()
-  } catch (e1) {
-    try {
-      request = new ActiveXObject("Msxml2.XMLHTTP")
-    } catch (e2) {
-      try {
-        request = new ActiveXObject("Microsoft.XMLHTTP")
-      } catch (e3) {
-        request = false
-      }
-    }
-  }
-  return request
-}
-    </script>
+    <link rel="stylesheet" href="lib/css/main.css" /> 
   </head>
 
   <body>
@@ -197,7 +56,8 @@ function ajaxRequest() {
             <input id="event_code" type="text" class="form-control" placeholder="Event Code">
             <p>
 	      The code for NYC is NYNY<br>
-              I've been testing with WAAMV<br>
+          The code for LI is NYLI<br>
+          I've been testing with Palmetto <br>
             </p>
           </div> <!--left column loadmatch tab-pane-->
         <div id="center">
@@ -219,6 +79,8 @@ function ajaxRequest() {
 
     <script src="lib/js/jquery-1.10.1.js"></script>
     <script src="lib/js/bootstrap.min.js"></script>
+    <script src="lib/js/scout.js"></script>
+    <script src="lib/js/adminMenu/adminMenu.js"></script>
     <script src="lib/js/adminMenu/saveCurrent.js"></script>
   </body>
 </html>

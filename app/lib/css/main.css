@@ -1,22 +1,52 @@
-
-
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* ==========================================================================
+   Author's custom styles
+    <!--TODO: Investigate how this works.  Shouldn't these be classes
+      instead of ids-->
+    <!--TODO: On the iPhone 6 these scroll laterally -->
+   ========================================================================== */
+#side {
+  float:left;
+  width: 33%;
+}
+#center {
+  float:left;
+  width: 34%;
+}
+button {
+  float:left;
+  width: 95%;
+  height: 65px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

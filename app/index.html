@@ -1,184 +1,12 @@
 <html>
   <head>
-    <title>Scout 15: Enter match statistics</title>
+    <title>Scout 16: Enter match statistics</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link rel="stylesheet" href="lib/css/bootstrap.min.css" />
     <link rel="stylesheet" href="lib/css/main.css" />
- 
-    <style>
-#side {
-  float:left;
-  width: 33%;
-}
-#center {
-  float:left;
-  width: 34%;
-}
-button {
-  float:left;
-  width: 95%;
-  height: 65px;
-}
-    </style>
-    <script>
-var xmlHttpObj;
-
-function catchEvent(eventObj, event, eventHandler) {
-  if (eventObj.addEventListener) {
-    eventObj.addEventListener(event, eventHandler,false);
-  } else if (eventObj.attachEvent) {
-    event = "on" + event;
-    eventObj.attachEvent(event, eventHandler);
-  }
-}
-
-catchEvent(window,"load", function() {
-  getCurrentGame();
-});
-
-function getXmlHttp() {
-  var xmlhttp = null;
-  if (window.XMLHttpRequest) {
-     xmlhttp = new XMLHttpRequest();
-  } else {
-    try {
-      xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-    } catch (e) {
-      try {
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-      } catch (e) {
-        return null;
-      }
-    }
-  }
-  return xmlhttp;
-}
-
-function getCurrentGame() {
-   // if xmlHttpObj not set
-   if (!xmlHttpObj)
-      xmlHttpObj = getXmlHttp();
-   if (!xmlHttpObj) return;
-
-   xmlHttpObj.open('GET', "getMatch.php", true);
-   xmlHttpObj.onreadystatechange = processCurrentMatch;
-   xmlHttpObj.send(null);
-}
-
-function processCurrentMatch() {
-
-  if(xmlHttpObj.readyState == 4 && xmlHttpObj.status == 200) {
-    try {
-
-      // evaluate JSON
-      eval("var match = ("+ xmlHttpObj.responseText+")");
-      //document.getElementById('match__id').value = match.id;
-      match__id = match.id;
-      document.getElementById('number_').value = match.number_;
-      document.getElementById('event_name').innerHTML = match.event_name;
-      document.getElementById('match_type').innerHTML = match.match_type 
-        + ' match';
-      document.getElementById('red1_btn').innerHTML = match.red_team1_id;
-      document.getElementById('red2_btn').innerHTML = match.red_team2_id;
-      document.getElementById('red3_btn').innerHTML = match.red_team3_id;
-      document.getElementById('blue1_btn').innerHTML = match.blue_team1_id;
-      document.getElementById('blue2_btn').innerHTML = match.blue_team2_id;
-      document.getElementById('blue3_btn').innerHTML = match.blue_team3_id;
-    } catch (e) {
-      alert(e.message);
-    }
-  } else if (xmlHttpObj.readyState == 4 && xmlHttpObj.status != 200) {
-    document.getElementById('info').innerHTML = 'Error: No current match!';
-  }
-}
-
-function buildParams() {
-  var params = "team_id=" + team_id + '&';
-  params += "match__id=" + match__id + '&';
-
-  for (var statName in stats) {
-    params = params + statName + "=" + stats[statName] + '&';
-  }
-
-  params = params.substring(0, params.length);
-
-  return params;
-}
-
-function blue1_btn() {
-  //TODO: Clean spaces from the button string
-  document.getElementById('team_id').value = 
-    document.getElementById('blue1_btn').innerHTML;
-}
-
-function blue2_btn() {
-  document.getElementById('team_id').value = 
-    document.getElementById('blue2_btn').innerHTML;
-}
-
-function blue3_btn() {
-  document.getElementById('team_id').value = 
-    document.getElementById('blue3_btn').innerHTML;
-}
-
-function red1_btn() {
-  //TODO: Clean spaces from the button string
-  document.getElementById('team_id').value = 
-    document.getElementById('red1_btn').innerHTML;
-}
-
-function red2_btn() {
-  document.getElementById('team_id').value = 
-    document.getElementById('red2_btn').innerHTML;
-}
-
-function red3_btn() {
-  document.getElementById('team_id').value = 
-    document.getElementById('red3_btn').innerHTML;
-}
-
-function saveStat() {
-  params = buildParams()
-  request = new ajaxRequest()
-  request.open("POST", "saveStat.php", true)
-  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-
-  request.onreadystatechange = function() {
-    if (this.readyState == 4) {
-      if (this.status == 200) {
-        if (this.responseText != null) {
-          document.getElementById('info').innerHTML = this.responseText
-        } else
-          alert("Ajax error: No data received")
-      } else
-        alert("Ajax error: " + this.statusText)
-    }
-  }
-
-  request.send(params)
-}
-
-function ajaxRequest() {
-  try {
-    var request = new XMLHttpRequest()
-  } catch (e1) {
-    try {
-      request = new ActiveXObject("Msxml2.XMLHTTP")
-    } catch (e2) {
-      try {
-        request = new ActiveXObject("Microsoft.XMLHTTP")
-      } catch (e3) {
-        request = false
-      }
-    }
-  }
-  return request
-}
-
-  </script>
   </head>
 
   <body>
@@ -439,6 +267,8 @@ get the next match if the admin advanced the current match.
 
     <script src="lib/js/jquery-1.10.1.js"></script>
     <script src="lib/js/bootstrap.min.js"></script>
+    <script src="lib/js/scout.js"></script>
+    <script src="lib/js/index/index.js"></script>
     <script src="lib/js/index/stat.js"></script>
   </body>
 </html>

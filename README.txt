@@ -53,6 +53,10 @@ lib/
 
 =================
 TODO
+tmp-a) remove infodb.php~ from github if it exists
+tmp-b) get code from team1635.org/dev/db in project
+tmp-c) get code from cntsoftware.com/dev/php in project
+
 1) Move js from the html to the appropriate file
   a) the AJAX stuff seems identical
 2) Move css from the html to the appropriate file
@@ -68,3 +72,18 @@ Junk (appears to be)
 template.html
 * getReport.php -> attempt to implement TODO #6
 * report_temp.html -> attempt to implement TODO #6
+
+Other:
+Getting the following error from VS Code:
+  Cannot validate the php file. The php program was not found. 
+  Use the 'php.validate.executablePath' setting to conf ...
+  
+For event codes use:
+http://frc-events.firstinspires.org/
+
+Web services project:
+https://usfirst.collab.net/sf/projects/first_community_developers/
+
+Web services documentation:
+http://docs.frcevents2.apiary.io/#reference
+

@@ -2,37 +2,25 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-CREATE SCHEMA IF NOT EXISTS `bradubv_scout15` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
-USE `bradubv_scout15` ;
+CREATE SCHEMA IF NOT EXISTS `_scout16_` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
+USE `_scout16_` ;
 
 -- -----------------------------------------------------
--- Table `bradubv_scout15`.`event`
+-- Table `event`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bradubv_scout15`.`event`;
-CREATE  TABLE IF NOT EXISTS `bradubv_scout15`.`event` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT ,
+CREATE  TABLE IF NOT EXISTS `_scout16_`.`event` (
+  `id` INT(11) NOT NULL ,
   `name` VARCHAR(45) NULL ,
-  `code` VARCHAR(10) NOT NULL ,
   `eventcol` VARCHAR(45) NULL ,
   `eventcol1` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = MyISAM;
 
--- -----------------------------------------------------
--- Table `bradubv_scout15`.`current_`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `bradubv_scout15`.`current_`;
-CREATE  TABLE IF NOT EXISTS `bradubv_scout15`.`current_` (
-  `event_code` VARCHAR(10) NOT NULL ,
-  `match_type` VARCHAR(10) NOT NULL ,
-  `match_number` TINYINT NOT NULL )
-ENGINE = MyISAM;
 
 -- -----------------------------------------------------
--- Table `bradubv_scout15`.`team`
+-- Table `team`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bradubv_scout15`.`team`;
-CREATE  TABLE IF NOT EXISTS `bradubv_scout15`.`team` (
+CREATE  TABLE IF NOT EXISTS `_scout16_`.`team` (
   `id` SMALLINT(6) NOT NULL ,
   `name` VARCHAR(128) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL ,
   `nick` VARCHAR(128) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL ,
@@ -47,20 +35,24 @@ COLLATE = utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `bradubv_scout15`.`match_`
+-- Table `match_`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bradubv_scout15`.`match_`;
-CREATE  TABLE IF NOT EXISTS `bradubv_scout15`.`match_` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT ,
+CREATE  TABLE IF NOT EXISTS `_scout16_`.`match_` (
+  `id` INT(11) NOT NULL ,
   `event_id` INT(11) NOT NULL ,
-  `type_` VARCHAR(10) NOT NULL,
-  `number_` TINYINT NOT NULL,
+  `number` TINYINT NULL ,
   `red_team1_id` SMALLINT(6) NOT NULL ,
   `red_team2_id` SMALLINT(6) NOT NULL ,
   `red_team3_id` SMALLINT(6) NOT NULL ,
   `blue_team1_id` SMALLINT(6) NOT NULL ,
   `blue_team2_id` SMALLINT(6) NOT NULL ,
   `blue_team3_id` SMALLINT(6) NOT NULL ,
+  
+  `defense2` TINYINT(4) NULL ,
+  `defense3` TINYINT(4) NULL ,
+  `defense4` TINYINT(4) NULL ,
+  `defense5` TINYINT(4) NULL ,
+  
   PRIMARY KEY (`id`) ,
   INDEX `fk_match__event_idx` (`event_id` ASC) ,
   INDEX `fk_match__team1_idx` (`red_team1_id` ASC) ,
@@ -75,33 +67,39 @@ COLLATE = utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `bradubv_scout15`.`stat`
+-- Table `stat`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bradubv_scout15`.`stat`;
-CREATE  TABLE IF NOT EXISTS `bradubv_scout15`.`stat` (
+CREATE  TABLE IF NOT EXISTS `_scout16_`.`stat` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `team_id` SMALLINT(6) NOT NULL ,
   `match__id` INT(11) NOT NULL ,
 
-  `auto_robot` TINYINT(1) NULL ,
-  `auto_tote` TINYINT(4) NULL ,
-  `auto_can` TINYINT(4) NULL ,
-  `auto_stack` TINYINT(1) NULL ,
   `auto_position` TINYINT(4) NULL ,
+  `auto_reach_defense` TINYINT(1) NULL ,
+  `auto_cross_defense` TINYINT(1) NULL ,
+  `auto_low_goal` TINYINT(4) NULL ,
+  `auto_high_goal` TINYINT(4) NULL ,
 
-  `scored_gray` TINYINT(4) NULL ,
-  `scored_can_level` TINYINT(4) NULL DEFAULT NULL ,
-  `score_stack` TINYINT(4) NULL DEFAULT NULL ,
-  `carry_stack` TINYINT(4) NULL DEFAULT NULL ,
-  `handle_litter` TINYINT(4) NULL DEFAULT NULL ,
-  `fallen_can` TINYINT(4) NULL DEFAULT NULL ,
-  `noodle_in_can` TINYINT(4) NULL DEFAULT NULL ,
-  `clear_recycle` TINYINT(4) NULL,
-  `grab_step_can` TINYINT(4) NULL,
+  `cross_low_bar` TINYINT(4) NULL DEFAULT NULL,
+  `cross_defense2` TINYINT(4) NULL DEFAULT NULL ,
+  `cross_defense3` TINYINT(4) NULL DEFAULT NULL ,
+  `cross_defense4` TINYINT(4) NULL DEFAULT NULL ,
+  `cross_defense5` TINYINT(4) NULL DEFAULT NULL ,
+  `open_defense2` TINYINT(4) NULL DEFAULT NULL ,
+  `open_defense3` TINYINT(4) NULL DEFAULT NULL ,
+  `open_defense4` TINYINT(4) NULL DEFAULT NULL ,
+  `open_defense5` TINYINT(4) NULL DEFAULT NULL ,
 
-  `coop` TINYINT(4) NULL,
-  `coop_stack` TINYINT(4) NULL,
+  `pick_boulder` TINYINT(4) NULL DEFAULT NULL ,
+  `pass_boulder` TINYINT(4) NULL DEFAULT NULL ,
+  
+  `score_low` TINYINT(4) NULL DEFAULT NULL ,
+  `score_high` TINYINT(4) NULL DEFAULT NULL ,
 
+  `get_on_tower` TINYINT(4) NULL DEFAULT NULL ,
+  `climb_tower` TINYINT(4) NULL DEFAULT NULL ,
+
+  `defense` TINYINT(1) NULL,
   `fouls` TINYINT(4) NULL,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,
@@ -112,20 +110,25 @@ DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
 
 /*
-CREATE USER `bradubv_app` IDENTIFIED BY 'password';
+create this in cpanel, because the dba doesn't have create user
 
-grant SELECT on TABLE `bradubv_scout15`.`event` to bradubv_app;
-grant UPDATE on TABLE `bradubv_scout15`.`event` to bradubv_app;
-grant INSERT on TABLE `bradubv_scout15`.`event` to bradubv_app;
-grant INSERT on TABLE `bradubv_scout15`.`match_` to bradubv_app;
-grant SELECT on TABLE `bradubv_scout15`.`match_` to bradubv_app;
-grant UPDATE on TABLE `bradubv_scout15`.`match_` to bradubv_app;
-grant INSERT on TABLE `bradubv_scout15`.`stat` to bradubv_app;
-grant SELECT on TABLE `bradubv_scout15`.`stat` to bradubv_app;
-grant UPDATE on TABLE `bradubv_scout15`.`stat` to bradubv_app;
-grant INSERT on TABLE `bradubv_scout15`.`team` to bradubv_app;
-grant SELECT on TABLE `bradubv_scout15`.`team` to bradubv_app;
-grant UPDATE on TABLE `bradubv_scout15`.`team` to bradubv_app;
+CREATE USER `_app_` IDENTIFIED BY '_password_';
+
+grant SELECT, UPDATE and INSERT to the app account in cpanel because
+the commands below do not work.
+
+grant SELECT on TABLE `_scout16_`.`event` to `_app_`;
+grant UPDATE on TABLE `_scout16_`.`event` to `_app_`;
+grant INSERT on TABLE `_scout16_`.`event` to `_app_`;
+grant INSERT on TABLE `_scout16_`.`match_` to `_app_`;
+grant SELECT on TABLE `_scout16_`.`match_` to `_app_`;
+grant UPDATE on TABLE `_scout16_`.`match_` to `_app_`;
+grant INSERT on TABLE `_scout16_`.`stat` to `_app_`;
+grant SELECT on TABLE `_scout16_`.`stat` to `_app_`;
+grant UPDATE on TABLE `_scout16_`.`stat` to `_app_`;
+grant INSERT on TABLE `_scout16_`.`team` to `_app_`;
+grant SELECT on TABLE `_scout16_`.`team` to `_app_`;
+grant UPDATE on TABLE `_scout16_`.`team` to `_app_`;
  */
 
 SET SQL_MODE=@OLD_SQL_MODE;
