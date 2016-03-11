@@ -134,33 +134,43 @@
                Cross<br>Def 5
                <span id="cross_def5_badge" class="badge">0</span>
              </button> 
+            <button type="button" id="defense_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('defense')">
+               Defense
+               <span id="defense_badge" class="badge">0</span>
+             </button> 
           </div> <!--left column tele tab-pane -->
           <div id="center">
             <button type="button" id="pick_ball_btn" class="btn btn-default btn-lg btn-block" 
              onclick="increase('pick_ball')">
                Pick<br>Ball
                <span id="pick_ball_badge" class="badge">0</span>
-             </button> 
+            </button> 
             <button type="button" id="open_def2_btn" class="btn btn-default btn-lg btn-block" 
              onclick="increase('open_def2')">
                Open<br>Def 2
                <span id="open_def2_badge" class="badge">0</span>
-             </button> 
+            </button> 
             <button type="button" id="open_def3_btn" class="btn btn-default btn-lg btn-block" 
              onclick="increase('open_def3')">
                Open<br>Def 3
                <span id="open_def3_badge" class="badge">0</span>
-             </button> 
+            </button> 
             <button type="button" id="open_def4_btn" class="btn btn-default btn-lg btn-block" 
              onclick="increase('open_def4')">
                Open<br>Def 4
                <span id="open_def4_badge" class="badge">0</span>
-             </button> 
+            </button> 
             <button type="button" id="open_def5_btn" class="btn btn-default btn-lg btn-block" 
              onclick="increase('open_def5')">
                Open<br>Def 5
                <span id="open_def5_badge" class="badge">0</span>
-             </button> 
+            </button> 
+            <button type="button" id="fouls_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('fouls')">
+               Fouls
+               <span id="fouls_badge" class="badge">0</span>
+            </button> 
           </div> <!--center column tele tab-pane -->
           <div id="side">
             <button type="button" id="pass_ball_btn" class="btn btn-default btn-lg btn-block" 
@@ -188,17 +198,8 @@
                Climb<br>Twr
                <span id="climb_twr_badge" class="badge">0</span>
              </button> 
-            <button type="button" id="defense_btn" class="btn btn-default btn-lg btn-block" 
-             onclick="increase('defense')">
-               Defense
-               <span id="defense_badge" class="badge">0</span>
-             </button> 
-            <button type="button" id="fouls_btn" class="btn btn-default btn-lg btn-block" 
-             onclick="increase('fouls')">
-               Fouls
-               <span id="fouls_badge" class="badge">0</span>
-             </button> 
-             <button type="button" id="undo_tele" class="btn btn-danger btn-lg btn-block" onclick="undo()">
+             <button type="button" id="undo_tele" class="btn btn-danger btn-lg btn-block" 
+              onclick="undo()">
                Undo
              </button>
           </div> <!--right column tele tab-pane -->

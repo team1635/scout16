@@ -47,10 +47,10 @@ CREATE  TABLE IF NOT EXISTS `_scout16_`.`match_` (
   `blue_team2_id` SMALLINT(6) NOT NULL ,
   `blue_team3_id` SMALLINT(6) NOT NULL ,
   
-  `defense2` TINYINT(4) NULL ,
-  `defense3` TINYINT(4) NULL ,
-  `defense4` TINYINT(4) NULL ,
-  `defense5` TINYINT(4) NULL ,
+  `defense2` VARCHAR(20) NULL ,
+  `defense3` VARCHAR(20) NULL ,
+  `defense4` VARCHAR(20) NULL ,
+  `defense5` VARCHAR(20) NULL ,
   
   PRIMARY KEY (`id`) ,
   INDEX `fk_match__event_idx` (`event_id` ASC) ,
