@@ -53,13 +53,8 @@ lib/
 
 =================
 TODO
-tmp-a) remove infodb.php~ from github if it exists
-tmp-b) get code from team1635.org/dev/db in project
-tmp-c) get code from cntsoftware.com/dev/php in project
 
-1) Move js from the html to the appropriate file
-  a) the AJAX stuff seems identical
-2) Move css from the html to the appropriate file
+1) figure out how the first row is to be inserted into current_;
 8) decide file naming convention: camel case or underscore separated
 9) upgrade bootstrap, jquery, html_dom.php
 10) should have build commands (ant, whatever) to stage the programs
@@ -86,4 +81,26 @@ https://usfirst.collab.net/sf/projects/first_community_developers/
 
 Web services documentation:
 http://docs.frcevents2.apiary.io/#reference
+
+=================
+Create database in cpanel
+Create dba user in cpanel (let them pick the password)
+Add dba user to database in cpanel
+Add app user to database in cpanel
+
+On your development machine run
+build/clean.bat
+On your web server run (if already deployed)
+~/dev/scout16/clean.sh
+On your development machine run
+build/build.bat
+build/deploy.bat
+On your web server
+cd ~/dev/scout16
+chmod u+x configure.sh
+chmod u+x clean.sh
+chmod u+x deploy.sh
+./configure.sh
+mysql --user=teamadmn_dba --password=dba_pass teamadmn_scout16 < createdb.sql > createdb.log
+mysql --user=teamadmn_app --password='app_pass' teamadmn_scout16 < insert_event.sql > insert_event.log
 

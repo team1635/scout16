@@ -1,8 +1,8 @@
 #!/bin/sh
 
-rm cleandb.sql
-rm infodb.php
-rm createdb.sql
-rm createdb.log
-rm insert_event.sql
-rm token_info.php
+rm -f cleandb.sql
+rm -f infodb.php
+rm -f createdb.sql
+rm -f *.log
+rm -f insert_event.sql
+rm -f token_info.php

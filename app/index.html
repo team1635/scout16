@@ -35,13 +35,16 @@
         <div class="tab-pane active" id="match">
 
           <div id="side">
-            <button type="button" id="red1_btn" class="btn btn-danger btn-lg btn-block" onclick=red1_btn()>
+            <button type="button" id="red1_btn" class="btn btn-danger btn-lg btn-block" 
+             onclick=red1_btn()>
               Red Team 1 
             </button>
-            <button type="button" id="red2_btn" class="btn btn-danger btn-lg btn-block" onclick=red2_btn()>
+            <button type="button" id="red2_btn" class="btn btn-danger btn-lg btn-block" 
+             onclick=red2_btn()>
               Red Team 2 
             </button>
-            <button type="button" id="red3_btn" class="btn btn-danger btn-lg btn-block" onclick=red3_btn()>
+            <button type="button" id="red3_btn" class="btn btn-danger btn-lg btn-block" 
+             onclick=red3_btn()>
               Red Team 3 
             </button>
           </div> <!--left column match tab-pane -->
@@ -51,46 +54,54 @@
             <div id="match_type"></div>
             <input id="number_" type="text" class="form-control" placeholder="Match #">
             <input id="team_id" type="text" class="form-control" placeholder="Team #">
+            <!-- TODO: Defense setup for the match-->
           </div> <!--center column match tab-pane -->
 
           <div id="side">
-            <button type="button" id="blue1_btn" class="btn btn-primary btn-lg btn-block" onclick=blue1_btn()>
+            <button type="button" id="blue1_btn" class="btn btn-primary btn-lg btn-block" 
+             onclick=blue1_btn()>
               Blue Team 1 
             </button>
-            <button type="button" id="blue2_btn" class="btn btn-primary btn-lg btn-block" onclick=blue2_btn()>
+            <button type="button" id="blue2_btn" class="btn btn-primary btn-lg btn-block" 
+             onclick=blue2_btn()>
               Blue Team 2 
             </button>
-            <button type="button" id="blue3_btn" class="btn btn-primary btn-lg btn-block" onclick=blue3_btn()>
+            <button type="button" id="blue3_btn" class="btn btn-primary btn-lg btn-block" 
+            onclick=blue3_btn()>
               Blue Team 3 
             </button>
           </div> <!--right column match tab-pane -->
-
         </div> <!--match tab-pane -->
 
         <div class="tab-pane" id="auto">
           <div id="side">
-            <button type="button" id="auto_position_btn" class="btn btn-default btn-lg btn-block" onclick="increase('auto_position')">
+            <button type="button" id="auto_position_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('auto_position')">
                Position 
                <span id="auto_position_badge" class="badge">1</span>
             </button>
-            <button type="button" id="auto_robot_btn" class="btn btn-default btn-lg btn-block" onclick="increase('auto_robot')">
-               Robot 
+            <button type="button" id="auto_reach_btn" class="btn btn-default btn-lg btn-block" 
+            onclick="increase('auto_reach')">
+               Reach Defense 
             </button>
           </div> <!--left column auto tab-pane -->
           <div id="center">
-            <button type="button" id="auto_can_btn" class="btn btn-default btn-lg btn-block" onclick="increase('auto_can')">
-               Can 
+            <button type="button" id="auto_cross_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('auto_cross')">
+               Cross Defense 
             </button>
           </div> <!--center column auto tab-pane -->
           <div id="side">
-            <button type="button" id="auto_tote_btn" class="btn btn-default btn-lg btn-block" onclick="increase('auto_tote')">
-               Tote 
+            <button type="button" id="auto_low_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('auto_low')">
+               Low Goal
             </button>
-            <button type="button" id="auto_stack_btn" class="btn btn-default btn-lg btn-block" onclick="increase('auto_stack')">
-               Stack 
-               <span id="auto_stack_badge" class="badge">0</span>
+            <button type="button" id="auto_high_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('auto_high')">
+               High Goal 
             </button>
-             <button type="button" id="undo_auto" class="btn btn-danger btn-lg btn-block" onclick="undo()">
+             <button type="button" id="undo_auto" class="btn btn-danger btn-lg btn-block" 
+             onclick="undo()">
                Undo
              </button>
           </div> <!--right column auto tab-pane -->
@@ -98,55 +109,92 @@
 
         <div class="tab-pane" id="tele">
           <div id="side">
-            <button type="button" id="scored_gray_btn" class="btn btn-default btn-lg btn-block" onclick="increase('scored_gray')">
-               Scored<br>Gray
-               <span id="scored_gray_badge" class="badge">0</span>
+            <button type="button" id="cross_low_bar_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('cross_low_bar')">
+               Cross<br>Low Bar
+               <span id="cross_low_bar_badge" class="badge">0</span>
              </button> 
-            <button type="button" id="score_stack_btn" class="btn btn-default btn-lg btn-block" onclick="increase('score_stack')">
-               Score<br>Stack
-               <span id="score_stack_badge" class="badge">0</span>
+            <button type="button" id="cross_def2_btn" class="btn btn-default btn-lg btn-block" 
+            onclick="increase('cross_def2')">
+               Cross<br>Def 2
+               <span id="cross_def2_badge" class="badge">0</span>
              </button> 
-            <button type="button" id="coop_btn" class="btn btn-default btn-lg btn-block" onclick="increase('coop')">
-               Coop
-               <span id="coop_badge" class="badge">0</span>
+            <button type="button" id="cross_def3_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('cross_def3')">
+               Cross<br>Def 3
+               <span id="cross_def3_badge" class="badge">0</span>
              </button> 
-            <button type="button" id="coop_stack_btn" class="btn btn-default btn-lg btn-block" onclick="increase('coop_stack')">
-               Coop<br>Stack
-               <span id="coop_stack_badge" class="badge">0</span>
+            <button type="button" id="cross_def4_btn" class="btn btn-default btn-lg btn-block" 
+            onclick="increase('cross_def4')">
+               Cross<br>Def 4
+               <span id="cross_def4_badge" class="badge">0</span>
+             </button> 
+            <button type="button" id="cross_def5_btn" class="btn btn-default btn-lg btn-block" 
+            onclick="increase('cross_def5')">
+               Cross<br>Def 5
+               <span id="cross_def5_badge" class="badge">0</span>
              </button> 
           </div> <!--left column tele tab-pane -->
           <div id="center">
-            <button type="button" id="handle_litter_btn" class="btn btn-default btn-lg btn-block" onclick="increase('handle_litter')">
-               Handle<br>Litter
-               <span id="handle_litter_badge" class="badge">0</span>
+            <button type="button" id="pick_ball_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('pick_ball')">
+               Pick<br>Ball
+               <span id="pick_ball_badge" class="badge">0</span>
              </button> 
-            <button type="button" id="fallen_can_btn" class="btn btn-default btn-lg btn-block" onclick="increase('fallen_can')">
-               Fallen<br>Can
-               <span id="fallen_can_badge" class="badge">0</span>
+            <button type="button" id="open_def2_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('open_def2')">
+               Open<br>Def 2
+               <span id="open_def2_badge" class="badge">0</span>
              </button> 
-            <button type="button" id="noodle_in_can_btn" class="btn btn-default btn-lg btn-block" onclick="increase('noodle_in_can')">
-               Noodle<br>in Can
-               <span id="noodle_in_can_badge" class="badge">0</span>
+            <button type="button" id="open_def3_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('open_def3')">
+               Open<br>Def 3
+               <span id="open_def3_badge" class="badge">0</span>
              </button> 
-            <button type="button" id="clr_rec_area_btn" class="btn btn-default btn-lg btn-block" onclick="increase('clr_rec_area')">
-               Clear<br>Recycle
-               <span id="clr_rec_area_badge" class="badge">0</span>
+            <button type="button" id="open_def4_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('open_def4')">
+               Open<br>Def 4
+               <span id="open_def4_badge" class="badge">0</span>
+             </button> 
+            <button type="button" id="open_def5_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('open_def5')">
+               Open<br>Def 5
+               <span id="open_def5_badge" class="badge">0</span>
              </button> 
           </div> <!--center column tele tab-pane -->
           <div id="side">
-            <button type="button" id="scored_can_level_btn" class="btn btn-default btn-lg btn-block" onclick="increase('scored_can_level')">
-               Can<br>Level
-               <span id="scored_can_level_badge" class="badge">0</span>
+            <button type="button" id="pass_ball_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('pass_ball')">
+               Pass<br>Ball
+               <span id="pass_ball_badge" class="badge">0</span>
              </button> 
-            <button type="button" id="carry_stack_btn" class="btn btn-default btn-lg btn-block" onclick="increase('carry_stack')">
-               Carry<br>Stack
-               <span id="carry_stack_badge" class="badge">0</span>
+            <button type="button" id="score_low_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('score_low')">
+               Score<br>Low
+               <span id="score_low_badge" class="badge">0</span>
              </button> 
-            <button type="button" id="grab_step_can_btn" class="btn btn-default btn-lg btn-block" onclick="increase('grab_step_can')">
-               Grab<br>Step Can
-               <span id="grab_step_can_badge" class="badge">0</span>
+            <button type="button" id="score_high_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('score_high')">
+               Score<br>High
+               <span id="score_high_badge" class="badge">0</span>
              </button> 
-            <button type="button" id="fouls_btn" class="btn btn-default btn-lg btn-block" onclick="increase('fouls')">
+            <button type="button" id="reach_twr_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('reach_twr')">
+               Reach<br>Twr
+               <span id="reach_twr_badge" class="badge">0</span>
+             </button> 
+            <button type="button" id="climb_twr_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('climb_twr')">
+               Climb<br>Twr
+               <span id="climb_twr_badge" class="badge">0</span>
+             </button> 
+            <button type="button" id="defense_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('defense')">
+               Defense
+               <span id="defense_badge" class="badge">0</span>
+             </button> 
+            <button type="button" id="fouls_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('fouls')">
                Fouls
                <span id="fouls_badge" class="badge">0</span>
              </button> 
@@ -181,7 +229,7 @@ match when all scouts have entered their score for the previous match.
           </p>
           <p> 
 The scouts must pick a team out the six playing the current match, score
-the auto by pressing the right button, score the teleop period and then 
+the auto using buttons on the Auto tab, score the teleop period and then 
 press the save button to save the stats to the database. <br>
 There is an undo button on the auto and teleop tabs.  It will undo your
 last click and then the click before that if pressed again.  If you refresh
@@ -204,52 +252,79 @@ get the next match if the admin advanced the current match.
               </tr>
             </thead>
 <tr>
-  <td>Auto</td><td>Position</td><td>What position is robot starting auto? 1 for left, 2 for middle and 3 for right from the perspective of the driver</td>
+  <td>Auto</td><td>Position</td><td>What defense is robot aligned with in auto? 
+      1 is low bar, next defense to the right is 2, etc.</td>
 </tr>
 <tr>
-  <td>Auto</td><td>Can</td><td>How many cans can the robot move to the auto zone in auto?</td>
+  <td>Auto</td><td>Reach Defense</td><td>Did robot reach the defense?</td>
 </tr>
 <tr>
-  <td>Auto</td><td>Tote</td><td>How many yellow totes can the robot move to the auto zone in auto?</td>
+  <td>Auto</td><td>Cross Defense</td><td>Did robot cross the defense?</td>
 </tr>
 <tr>
-  <td>Auto</td><td>Robot</td><td>Can the robot move to the auto zone in auto?</td>
+  <td>Auto</td><td>Low Goal</td><td>Did robot score low goal?</td>
 </tr>
 <tr>
-  <td>Auto</td><td>Stack</td><td>Can the robot stack yellow totes in auto zone in auto?</td>
+  <td>Auto</td><td>High Goal</td><td>Did robot score high goal?</td>
 </tr>
 <tr>
-  <td>Tele Op</td><td>Scored Gray</td><td>How many gray totes can robot put on the scoring platform in teleop?<td>
+  <td>Tele Op</td><td>Low Bar</td><td>How many times did robot cross the low bar?<td>
 </tr>
 <tr>
-  <td>Tele Op</td><td>Handle Litter</td><td>How many pieces of litter can robot carry to the Recycle zone?<td>
+  <td>Tele Op</td><td>Defense2</td><td>How many times did robot cross the second defense?<td>
 </tr>
 <tr>
-  <td>Tele Op</td><td>Can Level</td><td>How many can levels can robot score in teleop?<td>
+  <td>Tele Op</td><td>Defense3</td><td>How many times did robot cross the third defense?<td>
 </tr>
 <tr>
-  <td>Tele Op</td><td>Score Stack</td><td>Highest tote stack robot can build on the scoring platform.<td>
+  <td>Tele Op</td><td>Defense4</td><td>How many times did robot cross the fourth defense?<td>
 </tr>
 <tr>
-  <td>Tele Op</td><td>Fallen Can</td><td>How many fallen cans did robot pick up?<td>
+  <td>Tele Op</td><td>Defense5</td><td>How many times did robot cross the fifth defense?<td>
 </tr>
 <tr>
-  <td>Tele Op</td><td>Carry Stack</td><td>Highest tote stack robot can carry.<td>
+  <td>Tele Op</td><td>Open Def2</td>
+  <td>How many times did it open the second defense from the inside?<td>
 </tr>
 <tr>
-  <td>Tele Op</td><td>Coop</td><td>How many totes can robot put on coop step? <td>
+  <td>Tele Op</td><td>Open Def3</td>
+  <td>How many times did it open the third defense from the inside? <td>
 </tr>
 <tr>
-  <td>Tele Op</td><td>Noodle In Can</td><td>How many noodles did robot put in cans?<td>
+  <td>Tele Op</td><td>Open Def4</td>
+  <td>How many times did it open the fourth defense from the inside? <td>
 </tr>
 <tr>
-  <td>Tele Op</td><td>Grab Step Can</td><td>How many cans can robot grab from step?<td>
+  <td>Tele Op</td><td>Open Def5</td>
+  <td>How many times did it open the fifth defense from the inside?<td>
 </tr>
 <tr>
-  <td>Tele Op</td><td>Coop Stack</td><td>How high can robot stack totes on coop step?<td>
+  <td>Tele Op</td><td>Pick Boulder</td>
+  <td>How many balls did the robot pick?<td>
 </tr>
 <tr>
-  <td>Tele Op</td><td>Clear Recycle</td><td>How many totes can robot clear from recycle zone?<td> 
+  <td>Tele Op</td><td>Pass Boulder</td>
+  <td>How many balls did the robot pass to an alliance member?<td> 
+</tr>
+<tr>
+  <td>Tele Op</td><td>Low Goal</td>
+  <td>How many balls did the robot score in the low goal?<td> 
+</tr>
+<tr>
+  <td>Tele Op</td><td>High Goal</td>
+  <td>How many balls did the robot score in the high goal?<td> 
+</tr>
+<tr>
+  <td>Tele Op</td><td>Tower Base</td>
+  <td>Did the robot end on the tower?<td> 
+</tr>
+<tr>
+  <td>Tele Op</td><td>Climb</td>
+  <td>Did the robot climb?<td> 
+</tr>
+<tr>
+  <td>Tele Op</td><td>Defense</td>
+  <td>How many defensive stops did the robot make?<td>
 </tr>
 <tr>
   <td>Tele Op</td><td>Fouls</td><td>How many fouls did robot get?<td>

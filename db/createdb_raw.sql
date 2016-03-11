@@ -9,13 +9,12 @@ USE `_scout16_` ;
 -- Table `event`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `_scout16_`.`event` (
-  `id` INT(11) NOT NULL ,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL ,
-  `eventcol` VARCHAR(45) NULL ,
-  `eventcol1` VARCHAR(45) NULL ,
+  `code` VARCHAR(10) NULL ,
+  `week` TINYINT NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = MyISAM;
-
 
 -- -----------------------------------------------------
 -- Table `team`
@@ -33,14 +32,14 @@ ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
 
-
 -- -----------------------------------------------------
 -- Table `match_`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `_scout16_`.`match_` (
-  `id` INT(11) NOT NULL ,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `event_id` INT(11) NOT NULL ,
-  `number` TINYINT NULL ,
+  `type_` varchar(10) NOT NULL,
+  `number_` TINYINT NULL ,
   `red_team1_id` SMALLINT(6) NOT NULL ,
   `red_team2_id` SMALLINT(6) NOT NULL ,
   `red_team3_id` SMALLINT(6) NOT NULL ,
@@ -64,7 +63,6 @@ CREATE  TABLE IF NOT EXISTS `_scout16_`.`match_` (
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
-
 
 -- -----------------------------------------------------
 -- Table `stat`
@@ -108,6 +106,15 @@ CREATE  TABLE IF NOT EXISTS `_scout16_`.`stat` (
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
+
+-- -----------------------------------------------------
+-- Table `current_`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `_scout16_`.`current_` (
+  `event_code` VARCHAR(10) NULL ,
+  `match_type` VARCHAR(10) NULL ,
+  `match_number` TINYINT NULL )
+ENGINE = MyISAM;
 
 /*
 create this in cpanel, because the dba doesn't have create user

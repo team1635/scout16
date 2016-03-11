@@ -2,25 +2,30 @@ var team_id;
 var match__id;
  
 var stats = {
-  auto_robot: 0,
-  auto_tote: 0,
-  auto_can: 0,
-  auto_stack: 0,
   auto_position: 1,
+  auto_reach: 0,
+  auto_cross: 0,
+  auto_low: 0,
+  auto_high: 0,
 
-  scored_gray: 0,
-  scored_can_level: 0,
-  score_stack: 0,
-  carry_stack: 0,
-  handle_litter: 0,
-  fallen_can: 0,
-  noodle_in_can: 0,
-  clr_rec_area: 0,
-  grab_step_can: 0,
+  cross_low_bar: 0,
+  cross_def2: 0,
+  cross_def3: 0,
+  cross_def4: 0,
+  cross_def5: 0,
+  open_def2: 0,
+  open_def3: 0,
+  open_def4: 0,
+  open_def5: 0,
+  pick_ball: 0,
+  pass_ball: 0,
+  
+  score_low: 0,
+  score_high: 0,
+  reach_twr: 0,
+  climb_twr: 0,
 
-  coop: 0,
-  coop_stack: 0,
-
+  defense: 0,
   fouls: 0,
   
 };
