@@ -25,14 +25,9 @@
       <div class="tab-content">
         <div class="tab-pane active" id="setcurrent">
            <div id="side">
-             <input id="cur_event_cd" type="text" class="form-control" placeholder="Event code">
-             <p>
-	           The code for NYC is NYNY, LI is NYLI<br>
-               Testing with WAAMV and SCMB (Palmetto) <br>
-             </p>
              <div class="form-group">
-                <label for="def2">Defense 2:</label>
-                <select class="form-control" id="def2">
+                <label for="red_def2">Red Def 2</label>
+                <select class="form-control" id="red_def2">
                   <option>A - Portcullis</option>
                   <option>A - Cheval</option>
                   <option>B - Moat</option>
@@ -42,10 +37,10 @@
                   <option>D - Rock Wall</option>
                   <option>D - Rough Terrain</option>
                 </select>
-             </div> <!--def2 form-group-->
+             </div> <!--red_def2 form-group-->
              <div class="form-group">
-                <label for="def4">Defense 4:</label>
-                <select class="form-control" id="def4">
+               <label for="red_def3">Red Def 3</label>
+               <select class="form-control" id="red_def3">
                   <option>A - Portcullis</option>
                   <option>A - Cheval</option>
                   <option>B - Moat</option>
@@ -55,42 +50,95 @@
                   <option>D - Rock Wall</option>
                   <option>D - Rough Terrain</option>
                 </select>
-             </div> <!--def4 form-group-->
+             </div> <!--red_def3 form-group-->
+             <div class="form-group">
+                <label for="red_def4">Red Def 4</label>
+                <select class="form-control" id="red_def4">
+                  <option>A - Portcullis</option>
+                  <option>A - Cheval</option>
+                  <option>B - Moat</option>
+                  <option>B - Ramparts</option>
+                  <option>C - Drawbridge</option>
+                  <option>C - Sally Port</option>
+                  <option>D - Rock Wall</option>
+                  <option>D - Rough Terrain</option>
+                </select>
+             </div> <!--red_def4 form-group-->
+             <div class="form-group">
+                <label for="red_def5">Red Def 5</label>
+                <select class="form-control" id="red_def5">
+                  <option>A - Portcullis</option>
+                  <option>A - Cheval</option>
+                  <option>B - Moat</option>
+                  <option>B - Ramparts</option>
+                  <option>C - Drawbridge</option>
+                  <option>C - Sally Port</option>
+                  <option>D - Rock Wall</option>
+                  <option>D - Rough Terrain</option>
+                </select>
+             </div> <!--red_def5 form-group-->
            </div> <!--left column setcurrent tab-pane -->
            <div id="center">
+             <div class="form-group">
+                <label for="blue_def2">Blue Def 2</label>
+                <select class="form-control" id="blue_def2">
+                  <option>A - Portcullis</option>
+                  <option>A - Cheval</option>
+                  <option>B - Moat</option>
+                  <option>B - Ramparts</option>
+                  <option>C - Drawbridge</option>
+                  <option>C - Sally Port</option>
+                  <option>D - Rock Wall</option>
+                  <option>D - Rough Terrain</option>
+                </select>
+             </div> <!--blue_def2 form-group-->
+             <div class="form-group">
+               <label for="blue_def3">Blue Def 3</label>
+               <select class="form-control" id="blue_def3">
+                  <option>A - Portcullis</option>
+                  <option>A - Cheval</option>
+                  <option>B - Moat</option>
+                  <option>B - Ramparts</option>
+                  <option>C - Drawbridge</option>
+                  <option>C - Sally Port</option>
+                  <option>D - Rock Wall</option>
+                  <option>D - Rough Terrain</option>
+                </select>
+             </div> <!--blue_def3 form-group-->
+             <div class="form-group">
+                <label for="blue_def4">Blue Def 4</label>
+                <select class="form-control" id="blue_def4">
+                  <option>A - Portcullis</option>
+                  <option>A - Cheval</option>
+                  <option>B - Moat</option>
+                  <option>B - Ramparts</option>
+                  <option>C - Drawbridge</option>
+                  <option>C - Sally Port</option>
+                  <option>D - Rock Wall</option>
+                  <option>D - Rough Terrain</option>
+                </select>
+             </div> <!--blue_def4 form-group-->
+             <div class="form-group">
+                <label for="blue_def5">Blue Def 5</label>
+                <select class="form-control" id="blue_def5">
+                  <option>A - Portcullis</option>
+                  <option>A - Cheval</option>
+                  <option>B - Moat</option>
+                  <option>B - Ramparts</option>
+                  <option>C - Drawbridge</option>
+                  <option>C - Sally Port</option>
+                  <option>D - Rock Wall</option>
+                  <option>D - Rough Terrain</option>
+                </select>
+             </div> <!--blue def5 form-group-->
+           </div> <!--center column setcurrent tab-pane -->
+           <div id="side">
+             <!--TODO: the min and the max should be set from an event object-->
+             <input id="cur_event_cd" type="text" class="form-control" placeholder="Event code">
              <input id="cur_match_type" type="text" class="form-control" placeholder="Match type">
              <p>
                Types of matches: qualifications, practice
              </p>
-             <div class="form-group">
-               <label for="def3">Defense 3:</label>
-               <select class="form-control" id="def3">
-                  <option>A - Portcullis</option>
-                  <option>A - Cheval</option>
-                  <option>B - Moat</option>
-                  <option>B - Ramparts</option>
-                  <option>C - Drawbridge</option>
-                  <option>C - Sally Port</option>
-                  <option>D - Rock Wall</option>
-                  <option>D - Rough Terrain</option>
-                </select>
-             </div> <!--def3 form-group-->
-             <div class="form-group">
-                <label for="def5">Defense 5:</label>
-                <select class="form-control" id="def5">
-                  <option>A - Portcullis</option>
-                  <option>A - Cheval</option>
-                  <option>B - Moat</option>
-                  <option>B - Ramparts</option>
-                  <option>C - Drawbridge</option>
-                  <option>C - Sally Port</option>
-                  <option>D - Rock Wall</option>
-                  <option>D - Rough Terrain</option>
-                </select>
-             </div> <!--def5 form-group-->
-           </div> <!--center column setcurrent tab-pane -->
-           <div id="side">
-             <!--TODO: the min and the max should be set from an event object-->
              <input id="cur_match_nr" type="number" class="form-control" min="1" max="65" placeholder="Match #">
              <button type="button" id="cur_next" class="btn btn-default btn-lg btn-block" onclick="cur_next()">
                Next

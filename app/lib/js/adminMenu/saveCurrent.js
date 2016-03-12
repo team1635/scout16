@@ -2,10 +2,14 @@ function buildCurParams() {
   var params = "cur_event_cd=" + document.getElementById("cur_event_cd").value;
   params += "&cur_match_type=" + document.getElementById("cur_match_type").value;
   params += "&cur_match_nr=" + document.getElementById("cur_match_nr").value;
-  params += "&def2=" + document.getElementById("def2").value;
-  params += "&def3=" + document.getElementById("def3").value;
-  params += "&def4=" + document.getElementById("def4").value;
-  params += "&def5=" + document.getElementById("def5").value;
+  params += "&red_def2=" + document.getElementById("red_def2").value;
+  params += "&red_def3=" + document.getElementById("red_def3").value;
+  params += "&red_def4=" + document.getElementById("red_def4").value;
+  params += "&red_def5=" + document.getElementById("red_def5").value;
+  params += "&blue_def2=" + document.getElementById("blue_def2").value;
+  params += "&blue_def3=" + document.getElementById("blue_def3").value;
+  params += "&blue_def4=" + document.getElementById("blue_def4").value;
+  params += "&blue_def5=" + document.getElementById("blue_def5").value;
   return params;
 }
 

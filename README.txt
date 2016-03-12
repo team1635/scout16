@@ -55,6 +55,8 @@ lib/
 TODO
 
 1) figure out how the first row is to be inserted into current_;
+2) report.html should be dynamically generated (i.e. php)
+3) report.html should be called ourMatches.php
 8) decide file naming convention: camel case or underscore separated
 9) upgrade bootstrap, jquery, html_dom.php
 10) should have build commands (ant, whatever) to stage the programs

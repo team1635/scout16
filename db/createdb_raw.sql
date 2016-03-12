@@ -47,10 +47,14 @@ CREATE  TABLE IF NOT EXISTS `_scout16_`.`match_` (
   `blue_team2_id` SMALLINT(6) NOT NULL ,
   `blue_team3_id` SMALLINT(6) NOT NULL ,
   
-  `defense2` VARCHAR(20) NULL ,
-  `defense3` VARCHAR(20) NULL ,
-  `defense4` VARCHAR(20) NULL ,
-  `defense5` VARCHAR(20) NULL ,
+  `red_def2` VARCHAR(20) NULL ,
+  `red_def3` VARCHAR(20) NULL ,
+  `red_def4` VARCHAR(20) NULL ,
+  `red_def5` VARCHAR(20) NULL ,
+  `blue_def2` VARCHAR(20) NULL ,
+  `blue_def3` VARCHAR(20) NULL ,
+  `blue_def4` VARCHAR(20) NULL ,
+  `blue_def5` VARCHAR(20) NULL ,
   
   PRIMARY KEY (`id`) ,
   INDEX `fk_match__event_idx` (`event_id` ASC) ,
@@ -60,6 +64,45 @@ CREATE  TABLE IF NOT EXISTS `_scout16_`.`match_` (
   INDEX `fk_match__team4_idx` (`blue_team1_id` ASC) ,
   INDEX `fk_match__team5_idx` (`blue_team2_id` ASC) ,
   INDEX `fk_match__team6_idx` (`blue_team3_id` ASC) )
+ENGINE = MyISAM
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
+
+-- -----------------------------------------------------
+-- Table `flat_stat`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `_scout16_`.`flat_stat` (
+  `id` INT(11) NOT NULL ,
+
+  `had_portcullis` TINYINT(4) NULL DEFAULT NULL ,
+  `crossed_portcullis` TINYINT(4) NULL DEFAULT NULL ,
+  `open_portcullis` TINYINT(4) NULL DEFAULT NULL ,
+
+  `had_cheval` TINYINT(4) NULL DEFAULT NULL ,
+  `crossed_cheval` TINYINT(4) NULL DEFAULT NULL ,
+
+  `had_moat` TINYINT(4) NULL DEFAULT NULL ,
+  `crossed_moat` TINYINT(4) NULL DEFAULT NULL ,
+
+  `had_ramparts` TINYINT(4) NULL DEFAULT NULL ,
+  `crossed_ramparts` TINYINT(4) NULL DEFAULT NULL ,
+
+  `had_drawbridge` TINYINT(4) NULL DEFAULT NULL ,
+  `crossed_drawbridge` TINYINT(4) NULL DEFAULT NULL ,
+  `open_drawbridge` TINYINT(4) NULL DEFAULT NULL ,
+
+  `had_sally_port` TINYINT(4) NULL DEFAULT NULL ,
+  `crossed_sally_port` TINYINT(4) NULL DEFAULT NULL ,
+  `open_sally_port` TINYINT(4) NULL DEFAULT NULL ,
+
+  `had_rock_wall` TINYINT(4) NULL DEFAULT NULL ,
+  `crossed_rock_wall` TINYINT(4) NULL DEFAULT NULL ,
+  
+  `had_rough_terrain` TINYINT(4) NULL DEFAULT NULL ,
+  `crossed_rough_terrain` TINYINT(4) NULL DEFAULT NULL ,
+  
+  PRIMARY KEY (`id`) ,
+  UNIQUE INDEX `flat_id_UNIQUE` (`id` ASC) ,
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
@@ -103,6 +146,45 @@ CREATE  TABLE IF NOT EXISTS `_scout16_`.`stat` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,
   INDEX `fk_stat_team1_idx` (`team_id` ASC) ,
   INDEX `fk_stat_match_1_idx` (`match__id` ASC) )
+ENGINE = MyISAM
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
+
+-- -----------------------------------------------------
+-- Table `flat_stat`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `_scout16_`.`flat_stat` (
+  `id` INT(11) NOT NULL ,
+
+  `had_portcullis` TINYINT(4) NULL DEFAULT NULL ,
+  `crossed_portcullis` TINYINT(4) NULL DEFAULT NULL ,
+  `open_portcullis` TINYINT(4) NULL DEFAULT NULL ,
+
+  `had_cheval` TINYINT(4) NULL DEFAULT NULL ,
+  `crossed_cheval` TINYINT(4) NULL DEFAULT NULL ,
+
+  `had_moat` TINYINT(4) NULL DEFAULT NULL ,
+  `crossed_moat` TINYINT(4) NULL DEFAULT NULL ,
+
+  `had_ramparts` TINYINT(4) NULL DEFAULT NULL ,
+  `crossed_ramparts` TINYINT(4) NULL DEFAULT NULL ,
+
+  `had_drawbridge` TINYINT(4) NULL DEFAULT NULL ,
+  `crossed_drawbridge` TINYINT(4) NULL DEFAULT NULL ,
+  `open_drawbridge` TINYINT(4) NULL DEFAULT NULL ,
+
+  `had_sally_port` TINYINT(4) NULL DEFAULT NULL ,
+  `crossed_sally_port` TINYINT(4) NULL DEFAULT NULL ,
+  `open_sally_port` TINYINT(4) NULL DEFAULT NULL ,
+
+  `had_rock_wall` TINYINT(4) NULL DEFAULT NULL ,
+  `crossed_rock_wall` TINYINT(4) NULL DEFAULT NULL ,
+  
+  `had_rough_terrain` TINYINT(4) NULL DEFAULT NULL ,
+  `crossed_rough_terrain` TINYINT(4) NULL DEFAULT NULL ,
+  
+  PRIMARY KEY (`id`) ,
+  UNIQUE INDEX `flat_id_UNIQUE` (`id` ASC) ,
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
