@@ -54,6 +54,23 @@ lib/
 =================
 TODO
 
+1) clean duplicate NY matches from database;
+1.1) add scouting variable for robot dying during match.
+1.2) (bad crieteria I think) Level of 1-4 about how accurately do they drive.
+    (use the number of high goals)
+2) write code that will load the defenses from the api. (test on NY)
+3) write code that will compute the match stats using the defenses.
+4) write the team report to show the actual defenses, not the generic ones
+5) Make HTML report that works like getTeamReport, but returns all the teams 
+  with the stats as columns. For AJ's AppSheet scouting app.
+5) AJ is doing this. Playoff alliance building screen:
+    Only list teams that we can pick (below us);
+    If a team gets picked before we pick them, take them off the list.
+    Figure out what our picking criteria is.
+      Bogdan: pick high shooter.
+      Gus: robot shouldn't die first;
+      
+
 1) figure out how the first row is to be inserted into current_;
 2) report.html should be dynamically generated (i.e. php)
 3) report.html should be called ourMatches.php
@@ -63,6 +80,7 @@ TODO
   (fill in the real password), and sync with the website
 
 101) Low priority: use Angular.js
+102) Prevent event matches from loading a second time.
 
 =================
 Junk (appears to be)
