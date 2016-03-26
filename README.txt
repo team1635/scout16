@@ -2,11 +2,11 @@
 Installation
 ------------
 
-Prerequisites
+* Prerequisites
 Install putty from http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
 Make sure you have the putty utilities in your path (especially pscp.exe)
 
-Instructions
+* Instructions
 Create database in cpanel
 Create dba user in cpanel (let them pick the password)
 Add dba user to database in cpanel
@@ -109,15 +109,32 @@ template.html
 =================
 TODO
 ----
-1) figure out how the first row is to be inserted into current_;
-2) report.html should be dynamically generated (i.e. php)
-3) report.html should be called ourMatches.php
-8) decide file naming convention: camel case or underscore separated
-9) upgrade bootstrap, jquery, html_dom.php
-10) should have build commands (ant, whatever) to stage the programs
+1) clean duplicate NY matches from database;
+1.1) add scouting variable for robot dying during match.
+1.2) (bad crieteria I think) Level of 1-4 about how accurately do they drive.
+    (use the number of high goals)
+2) write code that will load the defenses from the api. (test on NY)
+3) write code that will compute the match stats using the defenses.
+4) write the team report to show the actual defenses, not the generic ones
+5) Make HTML report that works like getTeamReport, but returns all the teams 
+  with the stats as columns. For AJ's AppSheet scouting app.
+5) AJ is doing this. Playoff alliance building screen:
+    Only list teams that we can pick (below us);
+    If a team gets picked before we pick them, take them off the list.
+    Figure out what our picking criteria is.
+      Bogdan: pick high shooter.
+      Gus: robot shouldn't die first;      
+6) figure out how the first row is to be inserted into current_;
+7) report.html should be dynamically generated (i.e. php)
+8) report.html should be called ourMatches.php
+9) decide file naming convention: camel case or underscore separated
+10) upgrade bootstrap, jquery, html_dom.php
+11) should have build commands (ant, whatever) to stage the programs
   (fill in the real password), and sync with the website
 
-101) Low priority: use Angular.js
+Low Priority
+101) Use Angular.js
+102) Prevent event matches from loading a second time.
 
 =================
 Questions
@@ -126,4 +143,3 @@ How do I set up php so VS code knows about the syntax?
 Getting the following error from VS Code:
   Cannot validate the php file. The php program was not found. 
   Use the 'php.validate.executablePath' setting to conf ...
-  
