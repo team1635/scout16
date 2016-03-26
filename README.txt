@@ -1,3 +1,52 @@
+=================
+Installation
+------------
+
+Prerequisites
+Install putty from http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
+Make sure you have the putty utilities in your path (especially pscp.exe)
+
+Instructions
+Create database in cpanel
+Create dba user in cpanel (let them pick the password)
+Add dba user to database in cpanel
+Add app user to database in cpanel
+On the server create the *application directory* in a directory
+ served by a web server (~/www/scout16) with php working
+And the *config directory* somewhere else not served (~/dev/scout16)
+
+On your development machine run
+build/clean.bat
+On your web server run (if already deployed)
+~/dev/scout16/clean.sh
+On your development machine run
+build/build.bat
+build/deploy.bat
+On your web server
+cd ~/dev/scout16
+chmod u+x configure.sh
+chmod u+x clean.sh
+chmod u+x deploy.sh
+./configure.sh
+mysql --user=teamadmn_dba --password=dba_pass teamadmn_scout16 < createdb.sql > createdb.log
+mysql --user=teamadmn_app --password='app_pass' teamadmn_scout16 < insert_event.sql > insert_event.log
+
+=================
+Helpful links
+-------------
+For event codes use:
+http://frc-events.firstinspires.org/
+
+Web services project:
+https://usfirst.collab.net/sf/projects/first_community_developers/
+
+Web services documentation:
+http://docs.frcevents2.apiary.io/#reference
+
+=================
+Structure
+---------
+
 * index.html -> main landing page for the app. Scouting match page 
   (lib/css/bootstrap.min.css, lib/css/main.css)
   (lib/js/jquery-1.10.1.js, lib/js/bootstrap.min.js, lib/js/index/stat.js)
@@ -51,9 +100,15 @@ lib/
     report/
       report.js
 
+Junk (appears to be)
+--------------------
+template.html
+* getReport.php -> attempt to implement TODO #6
+* report_temp.html -> attempt to implement TODO #6
+
 =================
 TODO
-
+----
 1) figure out how the first row is to be inserted into current_;
 2) report.html should be dynamically generated (i.e. php)
 3) report.html should be called ourMatches.php
@@ -65,47 +120,10 @@ TODO
 101) Low priority: use Angular.js
 
 =================
-Junk (appears to be)
-template.html
-* getReport.php -> attempt to implement TODO #6
-* report_temp.html -> attempt to implement TODO #6
-
-Other:
+Questions
+---------
+How do I set up php so VS code knows about the syntax?
 Getting the following error from VS Code:
   Cannot validate the php file. The php program was not found. 
   Use the 'php.validate.executablePath' setting to conf ...
   
-For event codes use:
-http://frc-events.firstinspires.org/
-
-Web services project:
-https://usfirst.collab.net/sf/projects/first_community_developers/
-
-Web services documentation:
-http://docs.frcevents2.apiary.io/#reference
-
-=================
-
-=================
-
-Create database in cpanel
-Create dba user in cpanel (let them pick the password)
-Add dba user to database in cpanel
-Add app user to database in cpanel
-
-On your development machine run
-build/clean.bat
-On your web server run (if already deployed)
-~/dev/scout16/clean.sh
-On your development machine run
-build/build.bat
-build/deploy.bat
-On your web server
-cd ~/dev/scout16
-chmod u+x configure.sh
-chmod u+x clean.sh
-chmod u+x deploy.sh
-./configure.sh
-mysql --user=teamadmn_dba --password=dba_pass teamadmn_scout16 < createdb.sql > createdb.log
-mysql --user=teamadmn_app --password='app_pass' teamadmn_scout16 < insert_event.sql > insert_event.log
-

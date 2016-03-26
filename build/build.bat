@@ -8,4 +8,5 @@ xcopy ..\app\loadMatchesApi.php app
 xcopy ..\app\saveStat.php app
 xcopy ..\app\report.html app
 xcopy ..\app\getTeamReport.php app
+xcopy ..\app\loadMatchResult.php app
 xcopy ..\db db /s /e /y
