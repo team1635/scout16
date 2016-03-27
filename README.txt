@@ -31,6 +31,22 @@ chmod u+x deploy.sh
 mysql --user=teamadmn_dba --password=dba_pass teamadmn_scout16 < createdb.sql > createdb.log
 mysql --user=teamadmn_app --password='app_pass' teamadmn_scout16 < insert_event.sql > insert_event.log
 
+
+=================
+Deploy changes
+--------------
+On your development machine from the root of the project run
+cd build
+clean.bat
+On your web server run (if already deployed)
+cd ~/dev/scout16
+./clean.sh
+On your development machine run (still in the build directory)
+build.bat
+Answer D to the first question
+Answer D to the second question
+deploy.bat
+
 =================
 Helpful links
 -------------
@@ -109,10 +125,15 @@ template.html
 =================
 TODO
 ----
-1) clean duplicate NY matches from database;
 1.1) add scouting variable for robot dying during match.
-1.2) (bad crieteria I think) Level of 1-4 about how accurately do they drive.
-    (use the number of high goals)
+  DONE - added column to db/createdb_raw.sql
+  DONE - added column to team1635.org/teamadmn_scout16 db
+  DONE - modify Reference.xlsx to add the new column
+  DONE - add new button to app/index.html right column
+  DONE - modify app/saveStat.php
+  DONE - modify app/lib/js/index/stat.js
+  DONE - had to fix build/deploy.bat
+  fix 
 2) write code that will load the defenses from the api. (test on NY)
 3) write code that will compute the match stats using the defenses.
 4) write the team report to show the actual defenses, not the generic ones
@@ -129,12 +150,24 @@ TODO
 8) report.html should be called ourMatches.php
 9) decide file naming convention: camel case or underscore separated
 10) upgrade bootstrap, jquery, html_dom.php
-11) should have build commands (ant, whatever) to stage the programs
-  (fill in the real password), and sync with the website
 
 Low Priority
 101) Use Angular.js
 102) Prevent event matches from loading a second time.
+103) better build commands (ant, whatever) to stage the programs
+  (fill in the real password), and sync with the website
+104) Write test scripts
+105) Find better way to layout the buttons other than current bootstrap hack.
+
+DONE
+DONE - 1) clean duplicate NY matches from database;
+  DONE - a) backup the database: Bogdan xps c:\dev\scout16\db\backup\teamadmn_scout16.20160326_01.sql  
+  DONE - b) move scouting records from second load to first load 
+    none of the duplicate records were scouted
+    script used is in Bogdan xps c:\dev\scout16\db\backup\fix_dbl_match.sql
+  NOT DONE - x) low: deploy app to test server
+NOT DONE - 1.2) (bad crieteria I think) Level of 1-4 about how accurately do they drive.
+    (use the number of high goals)
 
 =================
 Questions

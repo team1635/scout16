@@ -38,6 +38,7 @@ $query =
 . "  , AVG(IFNULL(climb_tower,0)) as 'avg_climb_tower' "
 . "  , AVG(IFNULL(defense,0)) as 'avg_defense' "
 . "  , AVG(IFNULL(fouls,0)) as 'avg_fouls' " 
+. "  , AVG(IFNULL(died,0)) as 'avg_deaths' " 
 . "FROM stat " 
 . "WHERE team_id = $team_id ";
 
@@ -79,6 +80,8 @@ echo "</td></tr><tr><td>Defense moves</td><td>";
 echo mysql_result($result, 0, 'avg_defense');
 echo "</td></tr><tr><td>Fouls</td><td>";
 echo mysql_result($result, 0, 'avg_fouls');
+echo "</td></tr><tr><td>Deaths</td><td>";
+echo mysql_result($result, 0, 'avg_deaths');
 echo "</td></tr></tbody></table>";
 
 function SanitizeString($var) {

@@ -188,6 +188,11 @@
                Score<br>High
                <span id="score_high_badge" class="badge">0</span>
              </button> 
+            <button type="button" id="died_btn" class="btn btn-default btn-lg btn-block" 
+             onclick="increase('died')">
+               Died
+               <span id="died_badge" class="badge">0</span>
+             </button> 
             <button type="button" id="reach_twr_btn" class="btn btn-default btn-lg btn-block" 
              onclick="increase('reach_twr')">
                Reach<br>Twr
@@ -268,67 +273,74 @@ get the next match if the admin advanced the current match.
 <tr>
   <td>Auto</td><td>High Goal</td><td>Did robot score high goal?</td>
 </tr>
+<!--Tele Op screen first (left) column-->
 <tr>
-  <td>Tele Op</td><td>Low Bar</td><td>How many times did robot cross the low bar?<td>
+  <td>Tele Op</td><td>Cross Low Bar</td><td>How many times did robot cross the low bar?<td>
 </tr>
 <tr>
-  <td>Tele Op</td><td>Defense2</td><td>How many times did robot cross the second defense?<td>
+  <td>Tele Op</td><td>Cross Def 2</td><td>How many times did robot cross the second defense?<td>
 </tr>
 <tr>
-  <td>Tele Op</td><td>Defense3</td><td>How many times did robot cross the third defense?<td>
+  <td>Tele Op</td><td>Cross Def 3</td><td>How many times did robot cross the third defense?<td>
 </tr>
 <tr>
-  <td>Tele Op</td><td>Defense4</td><td>How many times did robot cross the fourth defense?<td>
+  <td>Tele Op</td><td>Cross Def 4</td><td>How many times did robot cross the fourth defense?<td>
 </tr>
 <tr>
-  <td>Tele Op</td><td>Defense5</td><td>How many times did robot cross the fifth defense?<td>
-</tr>
-<tr>
-  <td>Tele Op</td><td>Open Def2</td>
-  <td>How many times did it open the second defense from the inside?<td>
-</tr>
-<tr>
-  <td>Tele Op</td><td>Open Def3</td>
-  <td>How many times did it open the third defense from the inside? <td>
-</tr>
-<tr>
-  <td>Tele Op</td><td>Open Def4</td>
-  <td>How many times did it open the fourth defense from the inside? <td>
-</tr>
-<tr>
-  <td>Tele Op</td><td>Open Def5</td>
-  <td>How many times did it open the fifth defense from the inside?<td>
-</tr>
-<tr>
-  <td>Tele Op</td><td>Pick Boulder</td>
-  <td>How many balls did the robot pick?<td>
-</tr>
-<tr>
-  <td>Tele Op</td><td>Pass Boulder</td>
-  <td>How many balls did the robot pass to an alliance member?<td> 
-</tr>
-<tr>
-  <td>Tele Op</td><td>Low Goal</td>
-  <td>How many balls did the robot score in the low goal?<td> 
-</tr>
-<tr>
-  <td>Tele Op</td><td>High Goal</td>
-  <td>How many balls did the robot score in the high goal?<td> 
-</tr>
-<tr>
-  <td>Tele Op</td><td>Tower Base</td>
-  <td>Did the robot end on the tower?<td> 
-</tr>
-<tr>
-  <td>Tele Op</td><td>Climb</td>
-  <td>Did the robot climb?<td> 
+  <td>Tele Op</td><td>Cross Def 5</td><td>How many times did robot cross the fifth defense?<td>
 </tr>
 <tr>
   <td>Tele Op</td><td>Defense</td>
   <td>How many defensive stops did the robot make?<td>
 </tr>
+<!--Tele Op screen second (middle) column-->
+<tr>
+  <td>Tele Op</td><td>Pick Ball</td>
+  <td>How many balls did the robot pick?<td>
+</tr>
+<tr>
+  <td>Tele Op</td><td>Open Def 2</td>
+  <td>How many times did it open the second defense from the inside?<td>
+</tr>
+<tr>
+  <td>Tele Op</td><td>Open Def 3</td>
+  <td>How many times did it open the third defense from the inside? <td>
+</tr>
+<tr>
+  <td>Tele Op</td><td>Open Def 4</td>
+  <td>How many times did it open the fourth defense from the inside? <td>
+</tr>
+<tr>
+  <td>Tele Op</td><td>Open Def 5</td>
+  <td>How many times did it open the fifth defense from the inside?<td>
+</tr>
 <tr>
   <td>Tele Op</td><td>Fouls</td><td>How many fouls did robot get?<td>
+</tr>
+<!--Tele Op screen third (right, last) column-->
+<tr>
+  <td>Tele Op</td><td>Pass Ball</td>
+  <td>How many balls did the robot pass to an alliance member?<td> 
+</tr>
+<tr>
+  <td>Tele Op</td><td>Score Low</td>
+  <td>How many balls did the robot score in the low goal?<td> 
+</tr>
+<tr>
+  <td>Tele Op</td><td>Score High</td>
+  <td>How many balls did the robot score in the high goal?<td> 
+</tr>
+<tr>
+  <td>Tele Op</td><td>Died</td>
+  <td>Click once for every time the robot died during the game?<td> 
+</tr>
+<tr>
+  <td>Tele Op</td><td>Reach Twr</td>
+  <td>Did the robot end on the tower (challenged tower)?<td> 
+</tr>
+<tr>
+  <td>Tele Op</td><td>Climb Twr</td>
+  <td>Did the robot climb the tower at the end of the game?<td> 
 </tr>
             <tbody>
             </tbody>

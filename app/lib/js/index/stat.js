@@ -27,6 +27,7 @@ var stats = {
 
   defense: 0,
   fouls: 0,
+  died: 0
   
 };
 
@@ -125,4 +126,3 @@ function saveAndReset() {
   getCurrentGame();
  
 }
-

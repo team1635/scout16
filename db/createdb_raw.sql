@@ -142,6 +142,7 @@ CREATE  TABLE IF NOT EXISTS `_scout16_`.`stat` (
 
   `defense` TINYINT(1) NULL,
   `fouls` TINYINT(4) NULL,
+  `died` TINYINT NULL,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,
   INDEX `fk_stat_team1_idx` (`team_id` ASC) ,

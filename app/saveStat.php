@@ -33,6 +33,7 @@ $climb_twr = SanitizeString($_POST['climb_twr']);
 
 $defense = SanitizeString($_POST['defense']);
 $fouls = SanitizeString($_POST['fouls']);
+$died = SanitizeString($_POST['died']);
 
 $db_server = mysql_connect($db_hostname, $db_username , $db_password);
 if (!$db_server) die("Unable to connect to MySQL: " . mysql_error());
@@ -47,7 +48,8 @@ $query = "INSERT stat (team_id, match__id, auto_position "
          . "  , open_defense2, open_defense3, open_defense4 "
          . "  , open_defense5, pick_boulder, pass_boulder "
          . "  , score_low, score_high, get_on_tower "
-         . "  , climb_tower, defense, fouls ) "
+         . "  , climb_tower, defense, fouls "
+         . "  , died) "
          . "VALUES ($team_id, '$match__id', $auto_position "
          . "  , $auto_reach, $auto_cross, $auto_low "
          . "  , $auto_high, $cross_low_bar, $cross_def2 "
@@ -55,11 +57,12 @@ $query = "INSERT stat (team_id, match__id, auto_position "
          . "  , $open_def2, $open_def3, $open_def4 "
          . "  , $open_def5, $pick_ball, $pass_ball "
          . "  , $score_low, $score_high, $reach_twr "
-         . "  , $climb_twr, $defense, $fouls ) ";
+         . "  , $climb_twr, $defense, $fouls "
+         . "  , $died ) ";
 
 $result = mysql_query($query);
 //echo "<p>$query</p>"; //debug
-if (!$result) die("Database access failed: " . mysql_error());
+if (!$result) die("Database stat insert failed: " . mysql_error());
 
 echo "<p>Team $team_id stats for match id $match__id saved.</p>"; 
 
