@@ -23,6 +23,17 @@ function processCurrentMatch() {
       document.getElementById('cur_match_nr').value = match.number_;
       document.getElementById('cur_event_cd').value = match.event_code;
       document.getElementById('cur_match_type').value = match.match_type;
+      document.getElementById('match_nr_lbl').value = match.number_;
+      document.getElementById('event_cd_lbl').value = match.event_code;
+      document.getElementById('match_type_lbl').value = match.match_type;      
+      document.getElementById('red_def2').value = match.red_def2;
+      document.getElementById('red_def3').value = match.red_def3;
+      document.getElementById('red_def4').value = match.red_def4;
+      document.getElementById('red_def5').value = match.red_def5;
+      document.getElementById('blue_def2').value = match.blue_def2;
+      document.getElementById('blue_def3').value = match.blue_def3;
+      document.getElementById('blue_def4').value = match.blue_def4;
+      document.getElementById('blue_def5').value = match.blue_def5;
     } catch (e) {
       alert(e.message);
     }
@@ -41,33 +52,4 @@ function cur_prev() {
   var current_match = Number(document.getElementById("cur_match_nr").value);
   current_match -= 1;
   document.getElementById("cur_match_nr").value = current_match;
-}
-
-function buildParams() {
-  var params = "event_code=" + document.getElementById("event_code").value;
-  params += "&match_type=" + document.getElementById("match_type").value;
-  return params;
-}
-
-function loadMatches() {
-  params = buildParams()
-  request = new ajaxRequest()
-  request.open("POST", "loadMatches.php", true)
-  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-//  request.setRequestHeader("Content-length", params.length)
-//  request.setRequestHeader("Connection", "close")
-
-  request.onreadystatechange = function() {
-    if (this.readyState == 4) {
-      if (this.status == 200) {
-        if (this.responseText != null) {
-          document.getElementById('info').innerHTML = this.responseText
-        } else
-          alert("Ajax error: No data received")
-      } else
-        alert("Ajax error: " + this.statusText)
-    }
-  }
-
-  request.send(params)
 }

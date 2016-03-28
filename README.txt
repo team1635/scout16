@@ -125,31 +125,34 @@ template.html
 =================
 TODO
 ----
-1.1) add scouting variable for robot dying during match.
-  DONE - added column to db/createdb_raw.sql
-  DONE - added column to team1635.org/teamadmn_scout16 db
-  DONE - modify Reference.xlsx to add the new column
-  DONE - add new button to app/index.html right column
-  DONE - modify app/saveStat.php
-  DONE - modify app/lib/js/index/stat.js
-  DONE - had to fix build/deploy.bat
-  fix 
 2) write code that will load the defenses from the api. (test on NY)
+  change the constants used for defense names to match the API
+    in the database
+DONE -    in the code
+DONE -      Change the admin menu:
+DONE -        separate match loading to a different page
+DONE -        separate set current to two tabs 
+DONE -          (one for setting current and one for setting defenses)
+DONE -        if the match we're going to has defenses set, load them.
 3) write code that will compute the match stats using the defenses.
 4) write the team report to show the actual defenses, not the generic ones
 5) Make HTML report that works like getTeamReport, but returns all the teams 
   with the stats as columns. For AJ's AppSheet scouting app.
-5) AJ is doing this. Playoff alliance building screen:
+6) AJ is doing this. Playoff alliance building screen:
     Only list teams that we can pick (below us);
     If a team gets picked before we pick them, take them off the list.
     Figure out what our picking criteria is.
       Bogdan: pick high shooter.
       Gus: robot shouldn't die first;      
-6) figure out how the first row is to be inserted into current_;
-7) report.html should be dynamically generated (i.e. php)
-8) report.html should be called ourMatches.php
-9) decide file naming convention: camel case or underscore separated
-10) upgrade bootstrap, jquery, html_dom.php
+
+Medium Priority
+7) figure out how the first row is to be inserted into current_;
+8) report.html should be dynamically generated (i.e. php)
+9) report.html should be called ourMatches.php
+10) decide file naming convention: camel case or underscore separated
+11) upgrade bootstrap, jquery, html_dom.php
+12) Add null to the list of defense choices.
+
 
 Low Priority
 101) Use Angular.js
@@ -158,6 +161,7 @@ Low Priority
   (fill in the real password), and sync with the website
 104) Write test scripts
 105) Find better way to layout the buttons other than current bootstrap hack.
+106) Clean up getMatchReport.php.  It has weird backslash at top.
 
 DONE
 DONE - 1) clean duplicate NY matches from database;
@@ -168,6 +172,15 @@ DONE - 1) clean duplicate NY matches from database;
   NOT DONE - x) low: deploy app to test server
 NOT DONE - 1.2) (bad crieteria I think) Level of 1-4 about how accurately do they drive.
     (use the number of high goals)
+DONE - 1.1) add scouting variable for robot dying during match.
+  DONE - added column to db/createdb_raw.sql
+  DONE - added column to team1635.org/teamadmn_scout16 db
+  DONE - modify Reference.xlsx to add the new column
+  DONE - add new button to app/index.html right column
+  DONE - modify app/saveStat.php
+  DONE - modify app/lib/js/index/stat.js
+  DONE - had to fix build/deploy.bat
+  DONE - add stat to getTeamReport.php
 
 =================
 Questions

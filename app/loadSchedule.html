@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title>Scout 16: Load Event Schedule</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="lib/css/main.css" /> 
+  </head>
+
+  <body>
+    <div id="container">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" id="loadScheduleTab">
+        <li class="active">
+          <a href="#loadSchedule" data-toggle="tab">Load Schedule</a>
+        </li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="loadSchedule">
+          <div id="side">
+            <div class="form-group">
+              <label for="event_code">Event Code</label>
+              <select id="event_code" class="form-control">
+                <option>NYLI</option>
+	            <option>NYNY</option>
+                <option>NYTR</option>
+                <option>WAAMV</option>
+                <option>SCMB</option>
+              </select>
+            </div> <!--event code form group-->
+          </div> <!--left column loadmatch tab-pane-->
+        <div id="center">
+          <div class="form-group">
+            <label for="match_type">Match Type</label>
+            <select id="match_type" class="form-control"> <!--placeholder doesn't work for select-->
+              <option>qualifications</option>
+              <option>practice</option>
+            </select>
+          </div> <!--match type form group-->
+        </div> <!--center column loadmatch tab-pane-->
+        <div id="side">
+          <button type="button" id="loadmatch_btn" class="btn btn-default btn-lg btn-block" 
+           onclick="loadSchedule()">
+            Load Event Schedule
+          </button>
+        </div> <!--right column loadmatch tab-pane-->
+      </div> <!--tab-content--> 
+      <div>
+        <div id="info" class="panel panel-default"></div>
+      </div> <!--info panel at bottom-->
+    </div> <!--container-->
+
+    <script src="lib/js/jquery-1.10.1.js"></script>
+    <script src="lib/js/bootstrap.min.js"></script>
+    <script src="lib/js/scout.js"></script>
+    <script src="lib/js/loadSchedule/loadSchedule.js"></script>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<p>
+  UPDATE match_ 
+    SET red_def2 = ''   
+      , red_def3 = ''
+      , red_def4 = ''
+      , red_def5 = ''
+      , blue_def2 = 'D_RoughTerrain'
+      , blue_def3 = 'A_ChevalDeFrise'
+      , blue_def4 = 'B_Ramparts'
+      , blue_def5 = 'C_SallyPort'
+    WHERE event_id = 3
+      AND type_ = 'qual'
+      AND number_ = 10 
+</p>
+Match update with defenses failed:
+
+<z:anyType xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="" i:type="EventScoreDetails" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/">
+  <MatchScores>
+    <Score_2016>
+      <AudienceGroup>GroupA</AudienceGroup>
+      <matchLevel>Qualification</matchLevel>
+      <matchNumber>10</matchNumber>
+      <Alliances>
+        <Alliance>
+          <adjustPoints>0</adjustPoints>
+          <alliance>Blue</alliance>
+          <autoBoulderPoints>5</autoBoulderPoints>
+          <autoBouldersHigh>0</autoBouldersHigh>
+          <autoBouldersLow>1</autoBouldersLow>
+          <autoCrossingPoints>10</autoCrossingPoints>
+          <autoPoints>15</autoPoints>
+          <autoReachPoints>0</autoReachPoints>
+          <breachPoints>0</breachPoints>
+          <capturePoints>0</capturePoints>
+          <foulCount>1</foulCount>
+          <foulPoints>5</foulPoints>
+          <position1crossings>2</position1crossings>
+          <position2>D_RoughTerrain</position2>
+          <position2crossings>2</position2crossings>
+          <position3>A_ChevalDeFrise</position3>
+          <position3crossings>2</position3crossings>
+          <position4>B_Ramparts</position4>
+          <position4crossings>2</position4crossings>
+          <position5>C_SallyPort</position5>
+          <position5crossings>0</position5crossings>
+          <robot1Auto>Crossed</robot1Auto>
+          <robot2Auto>None</robot2Auto>
+          <robot3Auto>None</robot3Auto>
+          <techFoulCount>0</techFoulCount>
+          <teleopBoulderPoints>2</teleopBoulderPoints>
+          <teleopBouldersHigh>0</teleopBouldersHigh>
+          <teleopBouldersLow>1</teleopBouldersLow>
+          <teleopChallengePoints>5</teleopChallengePoints>
+          <teleopCrossingPoints>35</teleopCrossingPoints>
+          <teleopDefensesBreached>true</teleopDefensesBreached>
+          <teleopPoints>42</teleopPoints>
+          <teleopScalePoints>0</teleopScalePoints>
+          <teleopTowerCaptured>false</teleopTowerCaptured>
+          <totalPoints>62</totalPoints>
+          <towerEndStrength>9</towerEndStrength>
+          <towerFaceA>Unknown</towerFaceA>
+          <towerFaceB>Challenged</towerFaceB>
+          <towerFaceC>Unknown</towerFaceC>
+        </Alliance>
+        <Alliance>
+          <adjustPoints>0</adjustPoints>
+          <alliance>Red</alliance>
+          <autoBoulderPoints>0</autoBoulderPoints>
+          <autoBouldersHigh>0</autoBouldersHigh>
+          <autoBouldersLow>0</autoBouldersLow>
+          <autoCrossingPoints>10</autoCrossingPoints>
+          <autoPoints>10</autoPoints>
+          <autoReachPoints>0</autoReachPoints>
+          <breachPoints>0</breachPoints>
+          <capturePoints>0</capturePoints>
+          <foulCount>0</foulCount>
+          <foulPoints>5</foulPoints>
+          <position1crossings>2</position1crossings>
+          <position2>C_SallyPort</position2>
+          <position2crossings>0</position2crossings>
+          <position3>A_ChevalDeFrise</position3>
+          <position3crossings>0</position3crossings>
+          <position4>D_RockWall</position4>
+          <position4crossings>2</position4crossings>
+          <position5>B_Moat</position5>
+          <position5crossings>0</position5crossings>
+          <robot1Auto>None</robot1Auto>
+          <robot2Auto>None</robot2Auto>
+          <robot3Auto>Crossed</robot3Auto>
+          <techFoulCount>1</techFoulCount>
+          <teleopBoulderPoints>0</teleopBoulderPoints>
+          <teleopBouldersHigh>0</teleopBouldersHigh>
+          <teleopBouldersLow>0</teleopBouldersLow>
+          <teleopChallengePoints>0</teleopChallengePoints>
+          <teleopCrossingPoints>15</teleopCrossingPoints>
+          <teleopDefensesBreached>false</teleopDefensesBreached>
+          <teleopPoints>15</teleopPoints>
+          <teleopScalePoints>0</teleopScalePoints>
+          <teleopTowerCaptured>false</teleopTowerCaptured>
+          <totalPoints>30</totalPoints>
+          <towerEndStrength>6</towerEndStrength>
+          <towerFaceA>Unknown</towerFaceA>
+          <towerFaceB>None</towerFaceB>
+          <towerFaceC>None</towerFaceC>
+        </Alliance>
+      </Alliances>
+    </Score_2016>
+  </MatchScores>
+</z:anyType>

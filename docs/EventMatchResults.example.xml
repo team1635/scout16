@@ -1,0 +1,49 @@
+<z:anyType xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="" i:type="EventMatchResults" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/">
+<Matches>
+  <Match>
+    <actualStartTime>2016-03-12T11:17:42.153</actualStartTime>
+    <description>Qualification 10 (A)</description>
+    <matchNumber>10</matchNumber>
+    <postResultTime>2016-03-12T11:20:45.93</postResultTime>
+    <scoreBlueAuto>15</scoreBlueAuto>
+    <scoreBlueFinal>62</scoreBlueFinal>
+    <scoreBlueFoul>5</scoreBlueFoul>
+    <scoreRedAuto>10</scoreRedAuto>
+    <scoreRedFinal>30</scoreRedFinal>
+    <scoreRedFoul>5</scoreRedFoul>
+    <tournamentLevel>Qualification</tournamentLevel>
+    <Teams>
+      <Team>
+        <dq>false</dq>
+        <station>Red1</station>
+        <teamNumber>3760</teamNumber>
+      </Team>
+      <Team>
+        <dq>false</dq>
+        <station>Red2</station>
+        <teamNumber>5558</teamNumber>
+      </Team>
+      <Team>
+        <dq>false</dq>
+        <station>Red3</station>
+        <teamNumber>5806</teamNumber>
+      </Team>
+      <Team>
+        <dq>false</dq>
+        <station>Blue1</station>
+        <teamNumber>1635</teamNumber>
+      </Team>
+      <Team>
+        <dq>false</dq>
+        <station>Blue2</station>
+        <teamNumber>4773</teamNumber>
+      </Team>
+      <Team>
+        <dq>false</dq>
+        <station>Blue3</station>
+        <teamNumber>5993</teamNumber>
+      </Team>
+    </Teams>
+  </Match>
+</Matches>
+</z:anyType>

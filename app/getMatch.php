@@ -17,6 +17,8 @@ $query = "SELECT m.id, m.event_id, e.name "
          . "  , e.code, m.type_, m.number_ "
          . "  , m.red_team1_id, m.red_team2_id, m.red_team3_id "
          . "  , blue_team1_id, blue_team2_id, blue_team3_id "
+         . "  , red_def2, red_def3, red_def4, red_def5 "
+         . "  , blue_def2, blue_def3, blue_def4, blue_def5 "
          . "FROM match_ m "
          . "  JOIN current_ c "
          . "    ON  m.number_ = c.match_number "
@@ -48,8 +50,15 @@ $match = array(
   , 'blue_team1_id' => mysql_result($result, 0, 'blue_team1_id')
   , 'blue_team2_id' => mysql_result($result, 0, 'blue_team2_id')
   , 'blue_team3_id' => mysql_result($result, 0, 'blue_team3_id')
+  , 'red_def2' => mysql_result($result, 0, 'red_def2')
+  , 'red_def3' => mysql_result($result, 0, 'red_def3')
+  , 'red_def4' => mysql_result($result, 0, 'red_def4')
+  , 'red_def5' => mysql_result($result, 0, 'red_def5')
+  , 'blue_def2' => mysql_result($result, 0, 'blue_def2')
+  , 'blue_def3' => mysql_result($result, 0, 'blue_def3')
+  , 'blue_def4' => mysql_result($result, 0, 'blue_def4')
+  , 'blue_def5' => mysql_result($result, 0, 'blue_def5')
 );
 
 echo json_encode($match); 
 ?>
-
