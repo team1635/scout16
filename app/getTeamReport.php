@@ -46,6 +46,14 @@ $query = $query
 . "  , AVG(IFNULL(auto_high_goal,0)) as 'avg_auto_high_goal' "
 
 . "  , AVG(IFNULL(cross_low_bar,0)) as 'avg_cross_low_bar' "
+. "  , 0 as 'avg_cross_portcullis' "
+. "  , 0 as 'avg_cross_cheval' "
+. "  , 0 as 'avg_cross_ramparts' "
+. "  , 0 as 'avg_cross_moat' "
+. "  , 0 as 'avg_cross_sally' "
+. "  , 0 as 'avg_cross_draw' "
+. "  , 0 as 'avg_cross_rock' "
+. "  , 0 as 'avg_cross_rough' "
 
 . "  , AVG(IFNULL(pick_boulder,0)) as 'avg_pick_boulder' "
 . "  , AVG(IFNULL(pass_boulder,0)) as 'avg_pass_boulder' " 
@@ -94,6 +102,22 @@ echo mysql_result($sql_result, 0, 'avg_auto_high_goal');
 
 echo "</td></tr><tr><td>Cross Low Bar</td><td>";
 echo mysql_result($sql_result, 0, 'avg_cross_low_bar');
+echo "</td></tr><tr><td>Cross Portcullis</td><td>";
+echo mysql_result($sql_result, 0, 'avg_cross_portcullis');
+echo "</td></tr><tr><td>Cross Cheval De Frise</td><td>";
+echo mysql_result($sql_result, 0, 'avg_cross_cheval');
+echo "</td></tr><tr><td>Cross Ramparts</td><td>";
+echo mysql_result($sql_result, 0, 'avg_cross_ramparts');
+echo "</td></tr><tr><td>Cross Moat</td><td>";
+echo mysql_result($sql_result, 0, 'avg_cross_moat');
+echo "</td></tr><tr><td>Cross SallyPort</td><td>";
+echo mysql_result($sql_result, 0, 'avg_cross_sally');
+echo "</td></tr><tr><td>Cross Drawbridge</td><td>";
+echo mysql_result($sql_result, 0, 'avg_cross_draw');
+echo "</td></tr><tr><td>Cross Rock Wall</td><td>";
+echo mysql_result($sql_result, 0, 'avg_cross_rock');
+echo "</td></tr><tr><td>Cross Rough Terrain</td><td>";
+echo mysql_result($sql_result, 0, 'avg_cross_rough');
 
 echo "</td></tr><tr><td>Pick Ball</td><td>";
 echo mysql_result($sql_result, 0, 'avg_pick_boulder');
@@ -123,7 +147,11 @@ function echo_all_teams($sql_result) {
   echo '<th>Auto Reach Defense</th><th>Auto Cross Defense</th>';
   echo '<th>Auto Low Goal</th><th>Auto High Goal</th>';
   
-  echo '<th>Cross Low Bar</th><!--th>Cross Cheval</th-->';
+  echo '<th>Cross Low Bar</th>';
+  echo "<th>Cross Portcullis</th><th>Cross Cheval De Frise</th>";
+  echo "<th>Cross Ramparts</th><th>Cross Moat</th>";
+  echo "<th>Cross SallyPort</th><th>Cross Drawbridge</th>";
+  echo "<th>Cross Rock Wall</th><th>Cross Rough Terrain</th>";
 
   echo '<th>Pick Ball</th><th>Pass Ball</th>';
   echo '<th>Score Low</th><th>Score High</th>';
@@ -142,6 +170,14 @@ function echo_all_teams($sql_result) {
     echo '<td>' . $row["avg_auto_high_goal"] .'</td>';
     
     echo '<td>' . $row["avg_cross_low_bar"] . '</td>';
+    echo '<td>' . $row["avg_cross_portcullis"] . '</td>';
+    echo '<td>' . $row["avg_cross_cheval"] . '</td>';
+    echo '<td>' . $row["avg_cross_ramparts"] . '</td>';
+    echo '<td>' . $row["avg_cross_moat"] . '</td>';
+    echo '<td>' . $row["avg_cross_sally"] . '</td>';
+    echo '<td>' . $row["avg_cross_draw"] . '</td>';
+    echo '<td>' . $row["avg_cross_rock"] . '</td>';
+    echo '<td>' . $row["avg_cross_rough"] . '</td>';
 
     echo '<td>' . $row["avg_pick_boulder"] . '</td>';
     echo '<td>' . $row["avg_pass_boulder"] . '</td>';
