@@ -69,40 +69,64 @@ DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
 
 -- -----------------------------------------------------
--- Table `flat_stat`
+-- Table `match_result`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `_scout16_`.`flat_stat` (
-  `id` INT(11) NOT NULL ,
+CREATE  TABLE IF NOT EXISTS `_scout16_`.`match_result` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `event_id` INT(11) NOT NULL ,
+  `type_` varchar(10) NOT NULL,
+  `number_` TINYINT NULL ,
+    
+  `red_auto_high_goal` INT NULL ,
+  `red_auto_low_goal` INT NULL ,
+  `red_auto_cross_defense` INT NULL ,
+  `red_breach` INT NULL ,
+  `red_capture` INT NULL ,
+  `red_fouls` INT NULL ,
+  `red_cross_low_bar` INT NULL ,
+  `red_def2` VARCHAR(20) NULL ,
+  `red_cross_def2` INT NULL ,
+  `red_def3` VARCHAR(20) NULL ,
+  `red_cross_def3` INT NULL ,
+  `red_def4` VARCHAR(20) NULL ,
+  `red_cross_def4` INT NULL ,
+  `red_def5` VARCHAR(20) NULL ,
+  `red_cross_def5` INT NULL ,
+  `red_auto_1_reach_defense` VARCHAR(20) NULL ,
+  `red_auto_2_reach_defense` VARCHAR(20) NULL ,
+  `red_auto_3_reach_defense` VARCHAR(20) NULL ,
+  `red_score_high` INT NULL ,
+  `red_score_low` INT NULL ,
+  `red_tower_1_status` VARCHAR(20) NULL ,
+  `red_tower_2_status` VARCHAR(20) NULL ,
+  `red_tower_3_status` VARCHAR(20) NULL ,
 
-  `had_portcullis` TINYINT(4) NULL DEFAULT NULL ,
-  `crossed_portcullis` TINYINT(4) NULL DEFAULT NULL ,
-  `open_portcullis` TINYINT(4) NULL DEFAULT NULL ,
+  `blue_auto_high_goal` INT NULL ,
+  `blue_auto_low_goal` INT NULL ,
+  `blue_auto_cross_defense` INT NULL ,
+  `blue_breach` INT NULL ,
+  `blue_capture` INT NULL ,
+  `blue_fouls` INT NULL ,
+  `blue_cross_low_bar` INT NULL ,
+  `blue_def2` VARCHAR(20) NULL ,
+  `blue_cross_def2` INT NULL ,
+  `blue_def3` VARCHAR(20) NULL ,
+  `blue_cross_def3` INT NULL ,
+  `blue_def4` VARCHAR(20) NULL ,
+  `blue_cross_def4` INT NULL ,
+  `blue_def5` VARCHAR(20) NULL ,
+  `blue_cross_def5` INT NULL ,
+  `blue_auto_1_reach_defense` VARCHAR(20) NULL ,
+  `blue_auto_2_reach_defense` VARCHAR(20) NULL ,
+  `blue_auto_3_reach_defense` VARCHAR(20) NULL ,
+  `blue_score_high` INT NULL ,
+  `blue_score_low` INT NULL ,
+  `blue_tower_1_status` VARCHAR(20) NULL ,
+  `blue_tower_2_status` VARCHAR(20) NULL ,
+  `blue_tower_3_status` VARCHAR(20) NULL ,
 
-  `had_cheval` TINYINT(4) NULL DEFAULT NULL ,
-  `crossed_cheval` TINYINT(4) NULL DEFAULT NULL ,
-
-  `had_moat` TINYINT(4) NULL DEFAULT NULL ,
-  `crossed_moat` TINYINT(4) NULL DEFAULT NULL ,
-
-  `had_ramparts` TINYINT(4) NULL DEFAULT NULL ,
-  `crossed_ramparts` TINYINT(4) NULL DEFAULT NULL ,
-
-  `had_drawbridge` TINYINT(4) NULL DEFAULT NULL ,
-  `crossed_drawbridge` TINYINT(4) NULL DEFAULT NULL ,
-  `open_drawbridge` TINYINT(4) NULL DEFAULT NULL ,
-
-  `had_sally_port` TINYINT(4) NULL DEFAULT NULL ,
-  `crossed_sally_port` TINYINT(4) NULL DEFAULT NULL ,
-  `open_sally_port` TINYINT(4) NULL DEFAULT NULL ,
-
-  `had_rock_wall` TINYINT(4) NULL DEFAULT NULL ,
-  `crossed_rock_wall` TINYINT(4) NULL DEFAULT NULL ,
-  
-  `had_rough_terrain` TINYINT(4) NULL DEFAULT NULL ,
-  `crossed_rough_terrain` TINYINT(4) NULL DEFAULT NULL ,
-  
   PRIMARY KEY (`id`) ,
-  UNIQUE INDEX `flat_id_UNIQUE` (`id` ASC) ,
+  INDEX `fk_match_result_idx` (`event_id`, `type_`,`number_` ASC) )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
@@ -196,7 +220,8 @@ COLLATE = utf8_unicode_ci;
 CREATE  TABLE IF NOT EXISTS `_scout16_`.`current_` (
   `event_code` VARCHAR(10) NULL ,
   `match_type` VARCHAR(10) NULL ,
-  `match_number` TINYINT NULL )
+  `match_number` TINYINT NULL ,
+  `last_saved_result` TINYINT NULL)
 ENGINE = MyISAM;
 
 /*

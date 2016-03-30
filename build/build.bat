@@ -12,6 +12,8 @@ xcopy ..\app\updateDefensesApi.php app
 xcopy ..\app\loadSchedule.html app
 xcopy ..\app\scoutUtil.php app
 xcopy ..\app\saveCurrentDefenses.php app
+xcopy ..\app\loadMatchResults.php app
+xcopy ..\app\getLastSavedResult.php app
 
 
 rem xcopy ..\db db /s /e /y
