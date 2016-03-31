@@ -46,12 +46,11 @@ if (empty($event_code_param)) {
 
 $result_str = get_result_xml($last_saved_match, $token);
 $match_cnt = parse_xml_result($result_str, $last_saved_match);
-$new_last_saved_match = $last_saved_match + $match_cnt;
-echo "<p>Updated defenses for match $match_number_param at event $event_code_param</p>\n";
-echo "<p>Updated last saved match to $new_last_saved_match</p>\n";
-//update_last_saved_match($new_last_saved_match);
+$prev_last_saved_match = $last_saved_match['match_number'];
 
-//TODO: figure out how to save the last match received.
+$new_last_saved_match = $prev_last_saved_match + $match_cnt - 1;
+update_last_saved_match($new_last_saved_match);
+echo "<p>Updated last saved match to $new_last_saved_match</p>\n";
 
 function get_last_saved() {
   $query = "SELECT e.id, e.code, c.match_type, c.last_saved_result "
@@ -78,7 +77,8 @@ function get_last_saved() {
 
 function get_api_match_type($front_end_match_type) {
   $ret_match_type = 'qual';
-  if ($front_end_match_type == 'qualifications') {
+  if (($front_end_match_type == 'qualifications') or
+      ($front_end_match_type == 'qualificat')) {
       $ret_match_type = 'qual';
   } else {
       $ret_match_type = 'playoff';
@@ -109,10 +109,11 @@ function get_result_xml($last_saved_match, $token) {
     , $last_saved_match['api_match_type']
     , $last_saved_match['match_number']
   );
-
+  
   curl_setopt($ch, CURLOPT_URL, $url);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
   curl_setopt($ch, CURLOPT_HEADER, FALSE);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); //debug on local machine
 
   $enc_token = base64_encode($token);
 
@@ -122,6 +123,10 @@ function get_result_xml($last_saved_match, $token) {
   ));
 
   $response = curl_exec($ch);
+  if ($response === false) {
+    die("<p>curl error is:" . curl_error($ch) ."</p>\n"); 
+  }
+
   curl_close($ch);
 
   return $response;
@@ -149,11 +154,15 @@ function parse_xml_result($xml_str, $last_saved_match) {
   //var_dump($xml_str); //debug
   $env = new SimpleXMLElement($xml_str);
 
-  foreach ($env->MatchScores as $match_score) { 
+  foreach ($env->MatchScores->Score_2016 as $match_score) { 
     $match_cnt = $match_cnt + 1;
-    $proc_match = $match_score->Score_2016->matchNumber;
-    echo "Current match: " . $proc_match . "\n"; //debug
+    process_match($match_score, $event_id, $match_type);
   }
+
+  return $match_cnt;
+}
+
+function process_match($score, $event_id, $match_type) {
 
   $red_result = array(
     'auto_high_goal' => 0
@@ -183,7 +192,8 @@ function parse_xml_result($xml_str, $last_saved_match) {
   $blue_result = $red_result;
 
   //echo "{$env->MatchScores->Score_2016->Alliances->Alliance}\n"; //debug
-  foreach ($env->MatchScores->Score_2016->Alliances->Alliance as $alliance) {
+  //$match_score->Alliances->Alliance as $alliance //debug
+  foreach ($score->Alliances->Alliance as $alliance) {
       $alliance_color = $alliance->alliance;
       if ($alliance_color == 'Red') {
         $red_result['auto_high_goal'] = if_empty_zero($alliance->autoBoulderHigh);
@@ -235,11 +245,11 @@ function parse_xml_result($xml_str, $last_saved_match) {
         $blue_result['tower_3_status'] = $alliance->towerFaceC;
       }
   }
+
+  $match_number = $score->matchNumber;
   
   insert_result($event_id, $match_type, $match_number 
     , $red_result, $blue_result);
-
-  return $match_cnt;
 }
 
 function if_empty_zero($value) {
@@ -324,9 +334,17 @@ function insert_result($event_id, $match_type, $match_number
            . "  , '" . $blue_result['tower_2_status'] . "' "
            . "  , '" . $blue_result['tower_3_status'] . "' )";
 
-  //$result = mysql_query($query);
-  echo "<p>$query</p>"; //debug
-  if (!$result) die("<p>Match update with defenses failed: " . mysql_error() . "</p>");
+  //echo "<p>$query</p>\n"; //debug
+  $result = mysql_query($query);
+  if (!$result) die("<p>Score insert failed: " . mysql_error() . "</p>");
 }
+
+function update_last_saved_match($match) {
+  $query = "UPDATE current_ SET last_saved_result = " . $match;
+
+  $result = mysql_query($query);
+  if (!$result) die("Failed to save last match result loaded: " + mysql_error()); 
+}
+
 
 ?>

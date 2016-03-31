@@ -14,6 +14,7 @@ xcopy ..\app\scoutUtil.php app
 xcopy ..\app\saveCurrentDefenses.php app
 xcopy ..\app\loadMatchResults.php app
 xcopy ..\app\getLastSavedResult.php app
+xcopy ..\app\getTeams.php app
 
 
 rem xcopy ..\db db /s /e /y
