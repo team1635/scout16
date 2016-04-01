@@ -39,21 +39,24 @@ if (! $single_team) {
 }
 
 $query = $query
-. "COUNT(*) as 'scouted_matches' " 
+. "  CASE "
+. "    WHEN stat.team_id IS NULL THEN 0 "
+. "    ELSE COUNT(*) "
+. "  END as 'scouted_matches' " 
 . "  , AVG(IFNULL(auto_reach_defense,0)) as 'avg_auto_reach_defense' "
 . "  , AVG(IFNULL(auto_cross_defense,0)) as 'avg_auto_cross_defense' "
 . "  , AVG(IFNULL(auto_low_goal,0)) as 'avg_auto_low_goal' "
 . "  , AVG(IFNULL(auto_high_goal,0)) as 'avg_auto_high_goal' "
 
 . "  , AVG(IFNULL(cross_low_bar,0)) as 'avg_cross_low_bar' "
-. "  , 0 as 'avg_cross_portcullis' "
-. "  , 0 as 'avg_cross_cheval' "
-. "  , 0 as 'avg_cross_ramparts' "
-. "  , 0 as 'avg_cross_moat' "
-. "  , 0 as 'avg_cross_sally' "
-. "  , 0 as 'avg_cross_draw' "
-. "  , 0 as 'avg_cross_rock' "
-. "  , 0 as 'avg_cross_rough' "
+. "  , AVG(IFNULL(crossed_portcullis,0)) as 'avg_cross_portcullis' "
+. "  , AVG(IFNULL(crossed_cheval,0)) as 'avg_cross_cheval' "
+. "  , AVG(IFNULL(crossed_ramparts,0)) as 'avg_cross_ramparts' "
+. "  , AVG(IFNULL(crossed_moat,0)) as 'avg_cross_moat' "
+. "  , AVG(IFNULL(crossed_sally_port,0)) as 'avg_cross_sallyport' "
+. "  , AVG(IFNULL(crossed_drawbridge,0)) as 'avg_cross_drawbridge' "
+. "  , AVG(IFNULL(crossed_rock_wall,0)) as 'avg_cross_rockwall' "
+. "  , AVG(IFNULL(crossed_rough_terrain,0)) as 'avg_cross_rough' "
 
 . "  , AVG(IFNULL(pick_boulder,0)) as 'avg_pick_boulder' "
 . "  , AVG(IFNULL(pass_boulder,0)) as 'avg_pass_boulder' " 
@@ -64,7 +67,13 @@ $query = $query
 . "  , AVG(IFNULL(defense,0)) as 'avg_defense' "
 . "  , AVG(IFNULL(fouls,0)) as 'avg_fouls' " 
 . "  , AVG(IFNULL(died,0)) as 'avg_deaths' " 
-. "FROM stat ";
+. "  , MAX(IFNULL(score_low,0)) as 'max_score_low' "
+. "  , MAX(IFNULL(score_high,0)) as 'max_score_high' "
+. "FROM team "
+. "  LEFT JOIN stat "
+. "    ON stat.team_id = team.id "
+. "  LEFT JOIN flat_stat "
+. "    ON stat.id = flat_stat.id ";
 
 if ($single_team) {
   $query = $query . "WHERE team_id = $team_id ";
@@ -111,11 +120,11 @@ echo mysql_result($sql_result, 0, 'avg_cross_ramparts');
 echo "</td></tr><tr><td>Cross Moat</td><td>";
 echo mysql_result($sql_result, 0, 'avg_cross_moat');
 echo "</td></tr><tr><td>Cross SallyPort</td><td>";
-echo mysql_result($sql_result, 0, 'avg_cross_sally');
+echo mysql_result($sql_result, 0, 'avg_cross_sallyport');
 echo "</td></tr><tr><td>Cross Drawbridge</td><td>";
-echo mysql_result($sql_result, 0, 'avg_cross_draw');
+echo mysql_result($sql_result, 0, 'avg_cross_drawbridge');
 echo "</td></tr><tr><td>Cross Rock Wall</td><td>";
-echo mysql_result($sql_result, 0, 'avg_cross_rock');
+echo mysql_result($sql_result, 0, 'avg_cross_rockwall');
 echo "</td></tr><tr><td>Cross Rough Terrain</td><td>";
 echo mysql_result($sql_result, 0, 'avg_cross_rough');
 
@@ -137,6 +146,10 @@ echo "</td></tr><tr><td>Fouls</td><td>";
 echo mysql_result($sql_result, 0, 'avg_fouls');
 echo "</td></tr><tr><td>Deaths</td><td>";
 echo mysql_result($sql_result, 0, 'avg_deaths');
+echo "</td></tr><tr><td>Max Low Goal</td><td>";
+echo mysql_result($sql_result, 0, 'max_score_low');
+echo "</td></tr><tr><td>Max High Goal</td><td>";
+echo mysql_result($sql_result, 0, 'max_score_high');
 echo "</td></tr></tbody></table>";
 }
 
@@ -158,6 +171,7 @@ function echo_all_teams($sql_result) {
   echo '<th>Reach Twr</th><th>Climb Twr</th>';
   echo '<th>Defense</th><th>Fouls</th>';
   echo '<th>Died</th>';
+  echo '<th>Max Low Goal</th><th>Max High Goal</th>';
 
   echo '</tr><tbody>';
   while ($row = mysql_fetch_assoc($sql_result)) {
@@ -174,9 +188,9 @@ function echo_all_teams($sql_result) {
     echo '<td>' . $row["avg_cross_cheval"] . '</td>';
     echo '<td>' . $row["avg_cross_ramparts"] . '</td>';
     echo '<td>' . $row["avg_cross_moat"] . '</td>';
-    echo '<td>' . $row["avg_cross_sally"] . '</td>';
-    echo '<td>' . $row["avg_cross_draw"] . '</td>';
-    echo '<td>' . $row["avg_cross_rock"] . '</td>';
+    echo '<td>' . $row["avg_cross_sallyport"] . '</td>';
+    echo '<td>' . $row["avg_cross_drawbridge"] . '</td>';
+    echo '<td>' . $row["avg_cross_rockwall"] . '</td>';
     echo '<td>' . $row["avg_cross_rough"] . '</td>';
 
     echo '<td>' . $row["avg_pick_boulder"] . '</td>';
@@ -188,6 +202,8 @@ function echo_all_teams($sql_result) {
     echo '<td>' . $row["avg_defense"] . '</td>';
     echo '<td>' . $row["avg_fouls"] . '</td>';
     echo '<td>' . $row["avg_deaths"] . '</td>';
+    echo '<td>' . $row["max_score_low"] . '</td>';
+    echo '<td>' . $row["max_score_high"] . '</td>';
     echo '</tr>';
   }
   echo "</td></tr></tbody></table>";

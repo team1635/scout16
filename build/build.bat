@@ -6,7 +6,7 @@ xcopy ..\app\getMatch.php app
 xcopy ..\app\loadMatches.php app
 xcopy ..\app\loadMatchesApi.php app
 xcopy ..\app\saveStat.php app
-xcopy ..\app\report.html app
+xcopy ..\app\report.php app
 xcopy ..\app\getTeamReport.php app
 xcopy ..\app\updateDefensesApi.php app
 xcopy ..\app\loadSchedule.html app
