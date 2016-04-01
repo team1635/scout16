@@ -36,6 +36,8 @@ $result = mysql_query($query);
 //echo "<p>$query</p>"; //debug
 if (!$result) die("Current match update failed: " . mysql_error());
 
+recompute_flat_stat();
+
 echo "<p>Event code $cur_event_cd, match type $cur_match_type"
   . " and match number $cur_match_nr are now the current defaults.</p>"; 
 
@@ -51,6 +53,35 @@ function get_event_id($event_code) {
   //TODO: if we have more than one row return problem
 
   return mysql_result($result, 0, 'id');
+}
+
+function recompute_flat_stat() {
+  $query = "TRUNCATE TABLE flat_stat";
+  $result = mysql_query($query);
+  //echo "<p>$query</p>"; //debug
+  if (!$result) die("Error truncating flat_stat: " . mysql_error());
+
+  $base_red_query = file_get_contents("fix_def_red.sql");
+
+  for ($i = 1; $i < 4; $i++) {
+    $sql_script_file = "fix_def_red".$i.".sql";
+    $query = $base_red_query . file_get_contents($sql_script_file);
+    $result = mysql_query($query);
+    //echo "<p>$query</p>"; //debug
+    if (!$result) die("Error running sql script ($sql_script_file): " . mysql_error());
+  }
+
+  $base_blue_query = file_get_contents("fix_def_blue.sql");
+
+  for ($i = 1; $i < 4; $i++) {
+    $sql_script_file = "fix_def_blue".$i.".sql";
+    $query = $base_red_query . file_get_contents($sql_script_file);
+    $result = mysql_query($query);
+    //echo "<p>$query</p>"; //debug
+    if (!$result) die("Error running sql script ($sql_script_file): " . mysql_error());
+  }
+
+  echo "<p>Recomputed flat_stat</p>\n"; 
 }
 
 ?>

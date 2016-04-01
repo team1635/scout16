@@ -15,6 +15,8 @@ xcopy ..\app\saveCurrentDefenses.php app
 xcopy ..\app\loadMatchResults.php app
 xcopy ..\app\getLastSavedResult.php app
 xcopy ..\app\getTeams.php app
+xcopy ..\app\fix_def*.sql app
+xcopy ..\app\computeFlatStat.php app
 
 
 rem xcopy ..\db db /s /e /y

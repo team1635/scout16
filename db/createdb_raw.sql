@@ -209,7 +209,7 @@ CREATE  TABLE IF NOT EXISTS `_scout16_`.`flat_stat` (
   `crossed_rough_terrain` TINYINT(4) NULL DEFAULT NULL ,
   
   PRIMARY KEY (`id`) ,
-  UNIQUE INDEX `flat_id_UNIQUE` (`id` ASC) ,
+  UNIQUE INDEX `flat_id_UNIQUE` (`id` ASC) )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
